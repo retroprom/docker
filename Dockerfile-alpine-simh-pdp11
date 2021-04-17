@@ -1,0 +1,9 @@
+FROM alpine-simh-base
+
+ENV SIMH_CONFIG_SIMULATORS "-DSIMULATOR_PDP11_ENABLE=ON"
+
+RUN ./build-alpine-simh.sh
+
+USER simh
+WORKDIR /machine
+ENTRYPOINT [ "dumb-init", "simh-pdp11" ]

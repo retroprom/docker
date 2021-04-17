@@ -1,0 +1,24 @@
+FROM alpine:latest
+
+ENV HYPERION_GIT_REPOSITORY "https://github.com/SDL-Hercules-390/hyperion.git"
+ENV HYPERION_GIT_REVISION "master"
+
+ENV SOFTFLOAT_GIT_REPOSITORY "https://github.com/SDL-Hercules-390/SoftFloat.git"
+ENV SOFTFLOAT_GIT_REVISION "master"
+
+ENV HYPERION_PKG_BUILD   "autoconf automake file gcc g++ git make bzip2-dev"
+ENV HYPERION_PKG_RUNTIME "bash bzip2 dumb-init"
+
+ENV HYPERION_CONFIG "--prefix=/usr/local --disable-ipv6"
+
+RUN apk add --update --virtual hyperion-runtime ${HYPERION_PKG_RUNTIME}
+
+RUN addgroup -S hyperion && adduser -S hyperion -G hyperion
+
+WORKDIR /build/hyperion
+COPY scripts/build-alpine-hyperion.sh .
+RUN ./build-alpine-hyperion.sh
+
+USER hyperion
+WORKDIR /machine
+ENTRYPOINT [ "dumb-init", "hercules" ]
