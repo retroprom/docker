@@ -11,9 +11,8 @@ ENV HYPERION_PKG_RUNTIME "bash bzip2 dumb-init"
 
 ENV HYPERION_CONFIG "--prefix=/usr/local --disable-ipv6"
 
-RUN apk add --update --virtual hyperion-runtime ${HYPERION_PKG_RUNTIME}
-
-RUN addgroup -S hyperion && adduser -S hyperion -G hyperion
+RUN apk add --update --virtual hyperion-runtime ${HYPERION_PKG_RUNTIME} \
+ && addgroup -S hyperion && adduser -S hyperion -G hyperion
 
 WORKDIR /build/hyperion
 COPY scripts/build-alpine-hyperion.sh .

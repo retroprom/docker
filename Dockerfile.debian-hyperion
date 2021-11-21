@@ -11,10 +11,9 @@ ENV HYPERION_PKG_RUNTIME "bash bzip2 dumb-init libbz2-1.0"
 
 ENV HYPERION_CONFIG "--prefix=/usr/local"
 
-RUN apt-get update
-RUN apt-get install -y ${HYPERION_PKG_RUNTIME}
-
-RUN adduser --system --group hyperion
+RUN apt-get update \
+ && apt-get install -y ${HYPERION_PKG_RUNTIME} \
+ && adduser --system --group hyperion
 
 WORKDIR /build/hyperion
 COPY scripts/build-debian-hyperion.sh .
