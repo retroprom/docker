@@ -6,7 +6,7 @@ ENV HYPERION_GIT_REVISION "master"
 ENV SOFTFLOAT_GIT_REPOSITORY "https://github.com/SDL-Hercules-390/SoftFloat.git"
 ENV SOFTFLOAT_GIT_REVISION "master"
 
-ENV HYPERION_PKG_BUILD   "autoconf automake build-essential file gcc g++ git make libbz2-dev"
+ENV HYPERION_PKG_BUILD   "autoconf automake build-essential file gcc g++ git make libbz2-dev libltdl-dev"
 ENV HYPERION_PKG_RUNTIME "bash bzip2 dumb-init libbz2-1.0"
 
 ENV HYPERION_CONFIG "--prefix=/usr/local"
