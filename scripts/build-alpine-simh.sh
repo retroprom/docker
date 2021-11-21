@@ -1,11 +1,5 @@
 #!/bin/sh
 
-echo "==== Installing build dependencies"
-apk add --update --virtual simh-build ${SIMH_PKG_BUILD}
-
-echo "==== Cloning simh"
-git clone --depth 1 ${SIMH_GIT_REPOSITORY} simh
-
 echo "==== Creating build directory"
 mkdir build
 cd build
