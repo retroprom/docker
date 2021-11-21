@@ -11,6 +11,8 @@ ENV HYPERION_PKG_RUNTIME "bash bzip2 dumb-init libbz2-1.0"
 
 ENV HYPERION_CONFIG "--prefix=/usr/local"
 
+WORKDIR /build/hyperion
+
 RUN apt-get update \
  && apt-get install -y ${HYPERION_PKG_RUNTIME} \
  && adduser --system --group hyperion \
@@ -18,11 +20,10 @@ RUN apt-get update \
  && git clone --depth 1 ${HYPERION_GIT_REPOSITORY} hyperion \
  && git clone --depth 1 ${SOFTFLOAT_GIT_REPOSITORY} sf3a
 
-WORKDIR /build/hyperion
-COPY scripts/build-debian-hyperion.sh .
-RUN ./build-debian-hyperion.sh
+COPY scripts/build-hyperion.sh .
 
-RUN apt purge -y ${HYPERION_PKG_BUILD}
+RUN ./build-hyperion.sh \
+ && apt purge -y ${HYPERION_PKG_BUILD} \
  && apt autoremove -y \
  && apt clean
 
