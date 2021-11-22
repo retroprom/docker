@@ -16,5 +16,4 @@ RUN apk add --update --virtual simh-runtime ${SIMH_PKG_RUNTIME} \
  && apk add --update --virtual simh-build ${SIMH_PKG_BUILD} \
  && git clone --depth 1 ${SIMH_GIT_REPOSITORY} simh
 
-COPY scripts/build-alpine-simh.sh .
-
+COPY scripts/build-simh.sh .

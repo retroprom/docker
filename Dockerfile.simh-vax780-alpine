@@ -1,8 +1,8 @@
-FROM alpine-simh-base
+FROM simh-base:alpine-latest
 
 ENV SIMH_CONFIG_SIMULATORS "-DSIMULATOR_VAX780_ENABLE=ON"
 
-RUN ./build-alpine-simh.sh
+RUN ./build-simh.sh
 
 USER simh
 WORKDIR /machine
