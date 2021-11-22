@@ -17,7 +17,3 @@ make -j4
 echo "==== Installing hyperion"
 make install
 
-echo "==== Cleaning up"
-cd /
-rm -rf /build/hyperion
-

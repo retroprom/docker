@@ -1,4 +1,20 @@
-FROM alpine:latest
+FROM alpine:latest AS common
+
+ENV HYPERION_DEPENDS_RUNTIME "bash bzip2 dumb-init"
+
+RUN apk add --update --virtual hyperion-runtime ${HYPERION_DEPENDS_RUNTIME} \
+ && addgroup -S hyperion && adduser -S hyperion -G hyperion
+
+ENV LD_LIBRARY_PATH "/usr/local/lib"
+
+
+FROM common AS build
+
+WORKDIR /build/hyperion
+
+ENV HYPERION_DEPENDS_BUILD   "autoconf automake file gcc g++ git libtool make bzip2-dev"
+
+RUN apk add --update --virtual hyperion-build ${HYPERION_DEPENDS_BUILD}
 
 ENV HYPERION_GIT_REPOSITORY "https://github.com/SDL-Hercules-390/hyperion.git"
 ENV HYPERION_GIT_REVISION "master"
@@ -6,23 +22,24 @@ ENV HYPERION_GIT_REVISION "master"
 ENV SOFTFLOAT_GIT_REPOSITORY "https://github.com/SDL-Hercules-390/SoftFloat.git"
 ENV SOFTFLOAT_GIT_REVISION "master"
 
-ENV HYPERION_PKG_BUILD   "autoconf automake file gcc g++ git make bzip2-dev"
-ENV HYPERION_PKG_RUNTIME "bash bzip2 dumb-init"
+RUN git clone --depth 1 ${HYPERION_GIT_REPOSITORY} hyperion \
+ && cd hyperion \
+ && git checkout ${HYPERION_GIT_REVISION}
 
-ENV HYPERION_CONFIG "--prefix=/usr/local --disable-ipv6"
+RUN git clone --depth 1 ${SOFTFLOAT_GIT_REPOSITORY} sf3a \
+ && cd sf3a \
+ && git checkout ${SOFTFLOAT_GIT_REVISION}
 
-WORKDIR /build/hyperion
-
-RUN apk add --update --virtual hyperion-runtime ${HYPERION_PKG_RUNTIME} \
- && addgroup -S hyperion && adduser -S hyperion -G hyperion \
- && apk add --update --virtual hyperion-build ${HYPERION_PKG_BUILD} \
- && git clone --depth 1 ${HYPERION_GIT_REPOSITORY} hyperion \
- && git clone --depth 1 ${SOFTFLOAT_GIT_REPOSITORY} sf3a
+ENV HYPERION_CONFIG "--prefix=/usr/local --disable-ipv6 --disable-dependency-tracking"
 
 COPY scripts/build-hyperion.sh .
 
-RUN ./build-hyperion.sh \
- && apk del hyperion-build
+RUN ./build-hyperion.sh
+
+
+FROM common
+
+COPY --from=build /usr/local /usr/local
 
 USER hyperion
 WORKDIR /machine
