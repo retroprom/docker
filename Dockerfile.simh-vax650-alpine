@@ -1,4 +1,4 @@
-FROM simh-base:alpine-latest
+FROM simh-base:alpine
 
 ENV SIMH_CONFIG_SIMULATORS "-DSIMULATOR_VAX650_ENABLE=ON"
 
