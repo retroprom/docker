@@ -13,10 +13,10 @@ ENV HYPERION_CONFIG "--prefix=/usr/local"
 
 WORKDIR /build/hyperion
 
-RUN apt-get update \
- && apt-get install -y ${HYPERION_PKG_RUNTIME} \
+RUN apt update \
+ && apt install -y ${HYPERION_PKG_RUNTIME} ${HYPERION_PKG_BUILD} \
+ && apt clean \
  && adduser --system --group hyperion \
- && apt-get install -y ${HYPERION_PKG_BUILD} \
  && git clone --depth 1 ${HYPERION_GIT_REPOSITORY} hyperion \
  && git clone --depth 1 ${SOFTFLOAT_GIT_REPOSITORY} sf3a
 
