@@ -48,6 +48,5 @@ FROM common
 
 COPY --from=build /usr/local /usr/local
 
-USER hyperion
-WORKDIR /machine
+WORKDIR /sim
 ENTRYPOINT [ "dumb-init", "hercules" ]

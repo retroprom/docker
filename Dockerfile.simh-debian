@@ -39,5 +39,4 @@ FROM common
 
 COPY --from=build /usr/local /usr/local
 
-USER simh
-WORKDIR /machine
+WORKDIR /sim
