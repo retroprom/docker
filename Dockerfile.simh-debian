@@ -9,7 +9,7 @@ ARG SIMH_REV="retroprom/master"
 ENV SIMH_PKG_BUILD="build-essential gcc git cmake make libncurses-dev libpcap-dev libpcre3-dev libvdeplug-dev"
 ENV SIMH_PKG_RUNTIME="dumb-init libncurses6 libpcap0.8 libpcre3 libvdeplug2"
 
-ENV SIMH_BUILD_CONFIG="-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ${SIMH_SELECT} ${SIMH_CONFIG}"
+ENV SIMH_BUILD_CONFIG="-DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr/local ${SIMH_SELECT} ${SIMH_CONFIG}"
 
 ENV SIMH_BUILD_GIT="${SIMH_GIT}"
 ENV SIMH_BUILD_REV="${SIMH_REV}"

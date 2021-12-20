@@ -8,7 +8,7 @@ ARG SIMH_REV="retroprom/master"
 ENV SIMH_PKG_BUILD="gcc g++ git cmake make libpcap-dev ncurses-dev pcre-dev vde2-dev"
 ENV SIMH_PKG_RUNTIME="dumb-init libpcap ncurses pcre vde2"
 
-ENV SIMH_BUILD_CONFIG="-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ${SIMH_CONFIG}"
+ENV SIMH_BUILD_CONFIG="-DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr/local ${SIMH_CONFIG}"
 
 ENV SIMH_BUILD_GIT="${SIMH_GIT}"
 ENV SIMH_BUILD_REV="${SIMH_REV}"
