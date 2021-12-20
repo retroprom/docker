@@ -1,41 +1,48 @@
 FROM alpine:latest AS common
 
-ENV HYPERION_DEPENDS_RUNTIME "bash bzip2 dumb-init"
+ARG HYPERION_CONFIG="--disable-ipv6"
+
+ARG HYPERION_GIT="https://github.com/SDL-Hercules-390/hyperion.git"
+ARG HYPERION_REV="master"
+
+ARG SOFTFLOAT_GIT="https://github.com/SDL-Hercules-390/SoftFloat.git"
+ARG SOFTFLOAT_REV="master"
+
+ENV HYPERION_DEPENDS_RUNTIME="bash bzip2 dumb-init"
+ENV HYPERION_DEPENDS_BUILD="autoconf automake file gcc g++ git libtool make bzip2-dev"
+
+ENV HYPERION_BUILD_CONFIG="--prefix=/usr/local --disable-dependency-tracking ${HYPERION_CONFIG}"
+ENV HYPERION_BUILD_GIT="${HYPERION_GIT}"
+ENV HYPERION_BUILD_REV="${HYPERION_REV}"
+ENV SOFTFLOAT_BUILD_GIT="${SOFTFLOAT_GIT}"
+ENV SOFTFLOAT_BUILD_REV="${SOFTFLOAT_REV}"
+
+ENV LD_LIBRARY_PATH "/usr/local/lib"
 
 RUN apk add --update --virtual hyperion-runtime ${HYPERION_DEPENDS_RUNTIME} \
  && addgroup -S hyperion && adduser -S hyperion -G hyperion
 
-ENV LD_LIBRARY_PATH "/usr/local/lib"
-
-
 FROM common AS build
 
-WORKDIR /build/hyperion
-
-ENV HYPERION_DEPENDS_BUILD   "autoconf automake file gcc g++ git libtool make bzip2-dev"
+WORKDIR /build
 
 RUN apk add --update --virtual hyperion-build ${HYPERION_DEPENDS_BUILD}
 
-ENV HYPERION_GIT_REPOSITORY "https://github.com/SDL-Hercules-390/hyperion.git"
-ENV HYPERION_GIT_REVISION "master"
-
-ENV SOFTFLOAT_GIT_REPOSITORY "https://github.com/SDL-Hercules-390/SoftFloat.git"
-ENV SOFTFLOAT_GIT_REVISION "master"
-
-RUN git clone --depth 1 ${HYPERION_GIT_REPOSITORY} hyperion \
+RUN git clone --depth 1 ${HYPERION_BUILD_GIT} hyperion \
  && cd hyperion \
- && git checkout ${HYPERION_GIT_REVISION}
-
-RUN git clone --depth 1 ${SOFTFLOAT_GIT_REPOSITORY} sf3a \
+ && git checkout ${HYPERION_BUILD_REV} \
+ && cd .. \
+ && git clone --depth 1 ${SOFTFLOAT_BUILD_GIT} sf3a \
  && cd sf3a \
- && git checkout ${SOFTFLOAT_GIT_REVISION}
-
-ENV HYPERION_CONFIG "--prefix=/usr/local --disable-ipv6 --disable-dependency-tracking"
-
-COPY scripts/build-hyperion.sh .
-
-RUN ./build-hyperion.sh
-
+ && git checkout ${SOFTFLOAT_BUILD_REV} \
+ && cd .. \
+ && cd hyperion \
+ && ./autogen.sh \
+ && mkdir ../build \
+ && cd ../build \
+ && ../hyperion/configure ${HYPERION_BUILD_CONFIG} \
+ && make -j4 \
+ && make install
 
 FROM common
 

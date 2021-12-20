@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO mysteriously broken
 #time docker build . \
 #	-f Dockerfile.hyperion-alpine \
 #	-t 'hyperion:alpine' \
@@ -12,5 +11,4 @@ time docker build . \
 	-t 'hyperion:debian' \
 	--network host \
 	"$@"
-
 
