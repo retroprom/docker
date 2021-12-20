@@ -8,8 +8,8 @@ ARG HYPERION_REV="master"
 ARG SOFTFLOAT_GIT="https://github.com/SDL-Hercules-390/SoftFloat.git"
 ARG SOFTFLOAT_REV="master"
 
-ENV HYPERION_DEPENDS_RUNTIME="bash bzip2 dumb-init libbz2-1.0"
-ENV HYPERION_DEPENDS_BUILD="autoconf automake build-essential file gcc g++ git libtool make libbz2-dev libltdl-dev"
+ENV HYPERION_PKG_RUNTIME="bash bzip2 dumb-init libbz2-1.0"
+ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ git libtool make libbz2-dev libltdl-dev"
 
 ENV HYPERION_BUILD_CONFIG="--prefix=/usr/local ${HYPERION_CONFIG}"
 ENV HYPERION_BUILD_GIT="${HYPERION_GIT}"
@@ -20,7 +20,7 @@ ENV SOFTFLOAT_BUILD_REV="${SOFTFLOAT_REV}"
 ENV LD_LIBRARY_PATH "/usr/local/lib"
 
 RUN apt update \
- && apt install -y ${HYPERION_DEPENDS_RUNTIME} \
+ && apt install -y ${HYPERION_PKG_RUNTIME} \
  && apt clean \
  && adduser --system --group hyperion
 
@@ -29,7 +29,7 @@ FROM common as build
 WORKDIR /build
 
 RUN apt update \
- && apt install -y ${HYPERION_DEPENDS_BUILD} \
+ && apt install -y ${HYPERION_PKG_BUILD} \
  && apt clean
 
 RUN git clone --depth 1 ${HYPERION_BUILD_GIT} hyperion \
