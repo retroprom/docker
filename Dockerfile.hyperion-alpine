@@ -1,3 +1,4 @@
+
 FROM alpine:latest AS common
 
 ARG HYPERION_CONFIG="--disable-ipv6"
