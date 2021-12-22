@@ -2,6 +2,7 @@
 
 # simple packages first
 ./build-basilisk.sh
+./build-bochs.sh
 ./build-qemu.sh
 
 # then the fast building ones
