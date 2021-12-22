@@ -6,6 +6,7 @@ This is set of recipes for building retrocomputing emulators as Docker images.
 
 | Name | Emulator | Status | Description |
 | ---- | -------- | ------ | ----------- |
+| retro-basilisk | [BasiliskII](https://github.com/cebix/macemu/) | Untested | Apple Macintosh 68k emulator |
 | retro-dynamips | [Dynamips](https://github.com/GNS3/dynamips/) | Untested | Cisco router emulator for running Cisco IOS |
 | retro-es40 | [ES40](https://github.com/retroprom/es40/) | Untested | DEC Alpha emulator named after the DS40 |
 | retro-hercules | [Hercules](https://github.com/SDL-Hercules-390/hyperion/) | Untested | IBM mainframe emulator for S/370 and z/Architecture|

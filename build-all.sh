@@ -1,10 +1,13 @@
 #!/bin/sh
 
-# quick builds first
-./build-dynamips.sh
-./build-klh10.sh
+# simple packages first
+./build-basilisk.sh
 ./build-qemu.sh
 
-# longer builds later
+# then the fast building ones
+./build-dynamips.sh
+./build-klh10.sh
+
+# finally the slow-building ones
 ./build-hercules.sh
 ./build-simx.sh
