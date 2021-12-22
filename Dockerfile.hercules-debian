@@ -12,7 +12,7 @@ ARG SOFTFLOAT_GIT="https://github.com/SDL-Hercules-390/SoftFloat.git"
 ARG SOFTFLOAT_REV="master"
 
 ENV HYPERION_PKG_RUNTIME="ca-certificates bzip2 dumb-init libbz2-1.0"
-ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ git libtool make libbz2-dev libltdl-dev"
+ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ git-core libtool make libbz2-dev libltdl-dev subversion"
 
 ENV HYPERION_BUILD_CONFIG="--prefix=/usr/local ${HYPERION_CONFIG}"
 ENV HYPERION_BUILD_GIT="${HYPERION_GIT}"

@@ -9,7 +9,7 @@ ARG KLH10_GIT="https://github.com/PDP-10/klh10.git"
 ARG KLH10_REV="master"
 
 ENV KLH10_PKG_RUNTIME="ca-certificates dumb-init"
-ENV KLH10_PKG_BUILD="autoconf automake build-essential gcc git libtool make libltdl-dev pkg-config"
+ENV KLH10_PKG_BUILD="autoconf automake build-essential gcc git-core libtool make libltdl-dev pkg-config"
 
 ENV KLH10_BUILD_CONFIG="--prefix=/usr/local ${KLH10_CONFIG}"
 ENV KLH10_BUILD_GIT="${KLH10_GIT}"

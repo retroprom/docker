@@ -9,7 +9,7 @@ ARG ES40_GIT="https://github.com/retroprom/es40.git"
 ARG ES40_REV="promovicz/master"
 
 ENV ES40_PKG_RUNTIME="ca-certificates dumb-init libsdl1.2debian libx11-6"
-ENV ES40_PKG_BUILD="autoconf autoconf-archive automake build-essential gcc git libtool make libltdl-dev libsdl1.2-dev pkg-config xorg-dev"
+ENV ES40_PKG_BUILD="autoconf autoconf-archive automake build-essential gcc git-core libtool make libltdl-dev libsdl1.2-dev pkg-config xorg-dev"
 
 ENV ES40_BUILD_CONFIG="--prefix=/usr/local ${ES40_CONFIG}"
 ENV ES40_BUILD_GIT="${ES40_GIT}"
