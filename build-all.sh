@@ -6,5 +6,5 @@
 ./build-qemu.sh
 
 # longer builds later
-./build-hyperion.sh
+./build-hercules.sh
 ./build-simx.sh

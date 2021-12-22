@@ -7,7 +7,7 @@ This is set of recipes for building retrocomputing emulators as Docker images.
 | Name | Emulator | Description |
 | ---- | -------- | ----------- |
 | retro-dynamips | [Dynamips](https://github.com/GNS3/dynamips/) | Cisco router emulator for running Cisco IOS |
-| retro-hyperion | [Hercules SDL](https://github.com/hercules-390/hyperion/) | Hyperion edition of the Hercules mainframe emulator |
+| retro-hercules | [SDL Hercules](https://github.com/SDL-Hercules-390/hyperion/) | IBM mainframe emulator for S/370 and z/Architecture|
 | retro-klh10 | [KLH-10](https://github.com/PDP-10/klh10/) | DEC PDP-10 emulator, originally by Ken L. Harenstien |
 | retro-qemu-alpha | [QEMU](https://qemu.org) | QEMU for DEC Alpha |
 | retro-qemu-hppa | [QEMU](https://qemu.org) | QEMU for HP PA-RISC |
