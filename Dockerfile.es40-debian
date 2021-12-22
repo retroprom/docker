@@ -1,0 +1,45 @@
+
+ARG BASE="debian:stable"
+
+FROM ${BASE} AS common
+
+ARG ES40_CONFIG=""
+
+ARG ES40_GIT="https://github.com/retroprom/es40.git"
+ARG ES40_REV="promovicz/master"
+
+ENV ES40_PKG_RUNTIME="ca-certificates dumb-init libsdl1.2debian libx11-6"
+ENV ES40_PKG_BUILD="autoconf autoconf-archive automake build-essential gcc git libtool make libltdl-dev libsdl1.2-dev pkg-config xorg-dev"
+
+ENV ES40_BUILD_CONFIG="--prefix=/usr/local ${ES40_CONFIG}"
+ENV ES40_BUILD_GIT="${ES40_GIT}"
+ENV ES40_BUILD_REV="${ES40_REV}"
+
+RUN apt update \
+ && apt install --yes --no-install-recommends ${ES40_PKG_RUNTIME} \
+ && apt clean \
+ && adduser --system --group sim
+
+FROM common as build
+
+WORKDIR /build
+
+RUN apt update \
+ && apt install --yes --no-install-recommends ${ES40_PKG_BUILD} \
+ && apt clean
+
+RUN git clone --depth 1 ${ES40_BUILD_GIT} es40 \
+ && cd es40 \
+ && git checkout ${ES40_BUILD_REV} \
+ && ./autogen.sh \
+ && mkdir ../build \
+ && cd ../build \
+ && ../es40/configure ${ES40_BUILD_CONFIG} \
+ && make -j1 \
+ && make install
+
+FROM common
+
+COPY --from=build /usr/local /usr/local
+
+WORKDIR /sim
