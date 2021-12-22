@@ -3,7 +3,9 @@ ARG BASE="debian:stable"
 
 FROM ${BASE} AS common
 
-ENV QEMU_PKG_RUNTIME="ca-certificates dumb-init qemu-system-x86"
+ARG QEMU_TARGET=x86
+
+ENV QEMU_PKG_RUNTIME="ca-certificates dumb-init qemu-system-${QEMU_TARGET}"
 ENV QEMU_PKG_BUILD=""
 
 RUN apt update \
