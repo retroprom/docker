@@ -7,18 +7,19 @@ ALPINE_TARGETS="${DEBIAN_SOLO_TARGETS} ${DEBIAN_MISC_TARGETS}"
 
 #for target in ${ALPINE_TARGETS}; do
 #time docker build . \
-	#     -f Dockerfile.qemu-alpine \
+	#     -f Dockerfile.simple-alpine \
 	#     -t "retro-qemu-${target}:alpine" \
+	#     --build-arg SIMPLE_PKG="qemu-system-${target}" \
 	#     --network host \
 	#     "$@"
 #done
 
 for target in ${DEBIAN_SOLO_TARGETS}; do
 	time docker build . \
-	     -f Dockerfile.qemu-debian \
+	     -f Dockerfile.simple-debian \
 	     -t "retro-qemu-${target}:debian" \
 	     --network host \
-	     --build-arg QEMU_TARGET="${target}" \
+	     --build-arg SIMPLE_PKG="qemu-system-${target}" \
 	     "$@"
 done
 
