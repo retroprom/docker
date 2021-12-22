@@ -1,0 +1,26 @@
+
+ARG BASE="debian:stable"
+
+FROM ${BASE} AS common
+
+ENV QEMU_PKG_RUNTIME="ca-certificates dumb-init qemu-system-x86"
+ENV QEMU_PKG_BUILD=""
+
+RUN apt update \
+ && apt install --yes --no-install-recommends ${QEMU_PKG_RUNTIME} \
+ && apt clean \
+ && adduser --system --group sim
+
+FROM common as build
+
+WORKDIR /build
+
+RUN apt update \
+ && apt install --yes --no-install-recommends ${QEMU_PKG_BUILD} \
+ && apt clean
+
+FROM common
+
+COPY --from=build /usr/local /usr/local
+
+WORKDIR /sim

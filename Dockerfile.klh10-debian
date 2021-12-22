@@ -1,0 +1,44 @@
+
+ARG BASE="debian:stable"
+
+FROM ${BASE} AS common
+
+ARG KLH10_CONFIG=""
+
+ARG KLH10_GIT="https://github.com/PDP-10/klh10.git"
+ARG KLH10_REV="master"
+
+ENV KLH10_PKG_RUNTIME="ca-certificates dumb-init"
+ENV KLH10_PKG_BUILD="autoconf automake build-essential gcc git libtool make libltdl-dev pkg-config"
+
+ENV KLH10_BUILD_CONFIG="--prefix=/usr/local ${KLH10_CONFIG}"
+ENV KLH10_BUILD_GIT="${KLH10_GIT}"
+ENV KLH10_BUILD_REV="${KLH10_REV}"
+
+RUN apt update \
+ && apt install --yes --no-install-recommends ${KLH10_PKG_RUNTIME} \
+ && apt clean \
+ && adduser --system --group sim
+
+FROM common as build
+
+WORKDIR /build
+
+RUN apt update \
+ && apt install --yes --no-install-recommends ${KLH10_PKG_BUILD} \
+ && apt clean \
+ && git clone --depth 1 ${KLH10_BUILD_GIT} klh10 \
+ && cd klh10 \
+ && git checkout ${KLH10_BUILD_REV} \
+ && ./autogen.sh \
+ && mkdir ../build \
+ && cd ../build \
+ && ../klh10/configure ${KLH10_BUILD_CONFIG} \
+ && make -j4 \
+ && make install
+
+FROM common
+
+COPY --from=build /usr/local /usr/local
+
+WORKDIR /sim

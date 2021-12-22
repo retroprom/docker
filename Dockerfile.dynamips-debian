@@ -1,0 +1,43 @@
+
+ARG BASE="debian:stable"
+
+FROM ${BASE} AS common
+
+ARG DYNAMIPS_CONFIG="-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+
+ARG DYNAMIPS_GIT="https://github.com/GNS3/dynamips.git"
+ARG DYNAMIPS_REV="master"
+
+ENV DYNAMIPS_PKG_RUNTIME="ca-certificates dumb-init libelf1 libpcap0.8"
+ENV DYNAMIPS_PKG_BUILD="build-essential cmake gcc git libelf-dev libpcap-dev libtool make libltdl-dev pkg-config"
+
+ENV DYNAMIPS_BUILD_CONFIG="-DCMAKE_INSTALL_PREFIX=/usr/local ${DYNAMIPS_CONFIG}"
+ENV DYNAMIPS_BUILD_GIT="${DYNAMIPS_GIT}"
+ENV DYNAMIPS_BUILD_REV="${DYNAMIPS_REV}"
+
+RUN apt update \
+ && apt install --yes --no-install-recommends ${DYNAMIPS_PKG_RUNTIME} \
+ && apt clean \
+ && adduser --system --group sim
+
+FROM common as build
+
+WORKDIR /build
+
+RUN apt update \
+ && apt install --yes --no-install-recommends ${DYNAMIPS_PKG_BUILD} \
+ && apt clean \
+ && git clone --depth 1 ${DYNAMIPS_BUILD_GIT} dynamips \
+ && cd dynamips \
+ && git checkout ${DYNAMIPS_BUILD_REV} \
+ && mkdir ../build \
+ && cd ../build \
+ && cmake ${DYNAMIPS_BUILD_CONFIG} ../dynamips \
+ && make -j4 \
+ && make install
+
+FROM common
+
+COPY --from=build /usr/local /usr/local
+
+WORKDIR /sim
