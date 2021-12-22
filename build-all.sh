@@ -7,4 +7,4 @@
 
 # longer builds later
 ./build-hercules.sh
-./build-simh.sh
+./build-simx.sh
