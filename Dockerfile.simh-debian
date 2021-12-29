@@ -1,0 +1,44 @@
+
+ARG BASE="debian:stable"
+
+FROM ${BASE} AS common
+
+ARG SIMH_CONFIG="TESTS=0 USE_NETWORK=1"
+ARG SIMH_SELECT=""
+
+ARG SIMH_GIT="https://github.com/simh/simh.git"
+ARG SIMH_REV="master"
+
+ENV SIMH_PKG_RUNTIME="ca-certificates dumb-init libncurses6 libpcap0.8 libpcre3 libvdeplug2"
+ENV SIMH_PKG_BUILD="build-essential gcc git cmake make libncurses-dev libpcap-dev libpcre3-dev libvdeplug-dev"
+
+ENV SIMH_BUILD_CONFIG="PREFIX=/usr/local ${SIMH_SELECT} ${SIMH_CONFIG}"
+
+ENV SIMH_BUILD_GIT="${SIMH_GIT}"
+ENV SIMH_BUILD_REV="${SIMH_REV}"
+
+RUN apt update \
+ && apt install --yes --no-install-recommends ${SIMH_PKG_RUNTIME} \
+ && apt clean \
+ && adduser --system --group sim
+
+FROM common AS build
+
+WORKDIR /build
+
+RUN apt update \
+ && apt install --yes --no-install-recommends ${SIMH_PKG_BUILD} \
+ && apt clean \
+ && git clone --depth 1 ${SIMH_BUILD_GIT} simh \
+ && cd simh \
+ && git checkout ${SIMH_BUILD_REV} \
+ && make -j2
+
+RUN cd simh/BIN \
+ && cp `ls -p . | grep -v '/$'` /usr/local/bin
+
+FROM common
+
+COPY --from=build /usr/local /usr/local
+
+WORKDIR /sim
