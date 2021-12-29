@@ -5,17 +5,17 @@ DEBIAN_DISTROS="bullseye"
 
 #time docker build . \
 #	--network host \
-#	-f Dockerfile.es40-alpine \
-#	-t "retro-es40:alpine-latest" \
+#	-f Dockerfile.gxemul-alpine \
+#	-t "retro-gxemul:alpine-latest" \
 #	"$@"
 
 for d in ${DEBIAN_DISTROS}; do
 	time docker build . \
 	     --network host \
-	     -f Dockerfile.es40-debian \
-	     -t "retro-es40:${d}-latest" \
+	     -f Dockerfile.gxemul-debian \
+	     -t "retro-gxemul:${d}-latest" \
 	     --build-arg BASE="debian:${d}" \
 	     "$@"
 done
 
-docker tag "retro-es40:${DEBIAN_DEFAULT}-latest" "retro-es40:latest"
+docker tag "retro-gxemul:${DEBIAN_DEFAULT}-latest" "retro-gxemul:latest"

@@ -1,7 +1,7 @@
 
 ARG BASE="debian:stable"
 
-FROM ${BASE} AS common
+FROM "${BASE}" AS common
 
 ARG SIMPLE_PKG=""
 

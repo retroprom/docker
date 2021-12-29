@@ -10,5 +10,7 @@
 ./build-klh10.sh
 
 # finally the slow-building ones
+./build-gxemul.sh
 ./build-hercules.sh
+./build-simh.sh
 ./build-simx.sh

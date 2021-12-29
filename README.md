@@ -2,14 +2,17 @@
 
 This is set of recipes for building retrocomputing emulators as Docker images.
 
-### Emulator images
+### Emulators
 
-| Name | Emulator | Status | Description |
-| ---- | -------- | ------ | ----------- |
+This section documents the general status for each emulator.
+
+| Image name | Emulator | Status | Description |
+| ---------- | -------- | ------ | ----------- |
 | retro-basilisk | [BasiliskII](https://github.com/cebix/macemu/) | Untested | Apple Macintosh 68k emulator |
 | retro-bochs | [bochs](https://bochs.sourceforge.io/) | Untested | Bochs emulator for Intel X86 PCs |
 | retro-dynamips | [Dynamips](https://github.com/GNS3/dynamips/) | Untested | Cisco router emulator for running Cisco IOS |
 | retro-es40 | [ES40](https://github.com/retroprom/es40/) | Untested | DEC Alpha emulator named after the DS40 |
+| retro-gxemul | [GXemul](http://gavare.se/gxemul/) | Untested | Gavare's eXperimental Emulator |
 | retro-hercules | [Hercules](https://github.com/SDL-Hercules-390/hyperion/) | Untested | IBM mainframe emulator for S/360 through z/Arch |
 | retro-klh10 | [KLH-10](https://github.com/PDP-10/klh10/) | Untested | DEC PDP-10 emulator, originally by Ken L. Harenstien |
 | retro-qemu-alpha | [QEMU](https://qemu.org) | Untested | QEMU for DEC Alpha |

@@ -1,8 +1,16 @@
 #!/bin/bash
 
-time docker build . \
-     --network host \
-     -f Dockerfile.simple-debian \
-     -t "retro-basilisk:debian" \
-     --build-arg SIMPLE_PKG="bochs-sdl bochs-term bximage" \
-     "$@"
+DEBIAN_DEFAULT="bullseye"
+DEBIAN_DISTROS="bullseye"
+
+for d in ${DEBIAN_DISTROS}; do
+	time docker build . \
+	     --network host \
+	     -f Dockerfile.simple-debian \
+	     -t "retro-bochs:${d}-latest" \
+	     --build-arg BASE="debian:${d}" \
+	     --build-arg SIMPLE_PKG="bochs-sdl bochs-term bximage" \
+	     "$@"
+done
+
+docker tag "retro-bochs:${DEBIAN_DEFAULT}-latest" "retro-bochs:latest"
