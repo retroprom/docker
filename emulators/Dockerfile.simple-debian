@@ -7,7 +7,8 @@ ARG SIMPLE_PKG=""
 
 ENV SIMPLE_PKG_RUNTIME="ca-certificates dumb-init ${SIMPLE_PKG}"
 
-RUN apt update \
+RUN sed -i -e 's/ main/ main contrib non-free/g' /etc/apt/sources.list \
+ && apt update \
  && apt install --yes --no-install-recommends ${SIMPLE_PKG_RUNTIME} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
  && adduser --system --group sim
