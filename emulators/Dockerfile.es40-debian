@@ -17,7 +17,7 @@ ENV ES40_BUILD_REV="${ES40_REV}"
 
 RUN apt update \
  && apt install --yes --no-install-recommends ${ES40_PKG_RUNTIME} \
- && apt clean \
+ && apt clean && rm -rf /var/lib/apt/lists/* \
  && adduser --system --group sim
 
 FROM common as build
@@ -26,7 +26,7 @@ WORKDIR /build
 
 RUN apt update \
  && apt install --yes --no-install-recommends ${ES40_PKG_BUILD} \
- && apt clean
+ && apt clean && rm -rf /var/lib/apt/lists/*
 
 RUN git clone --depth 1 ${ES40_BUILD_GIT} es40 \
  && cd es40 \

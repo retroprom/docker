@@ -17,7 +17,7 @@ ENV KLH10_BUILD_REV="${KLH10_REV}"
 
 RUN apt update \
  && apt install --yes --no-install-recommends ${KLH10_PKG_RUNTIME} \
- && apt clean \
+ && apt clean && rm -rf /var/lib/apt/lists/* \
  && adduser --system --group sim
 
 FROM common as build
@@ -26,7 +26,7 @@ WORKDIR /build
 
 RUN apt update \
  && apt install --yes --no-install-recommends ${KLH10_PKG_BUILD} \
- && apt clean \
+ && apt clean && rm -rf /var/lib/apt/lists/* \
  && git clone --depth 1 ${KLH10_BUILD_GIT} klh10 \
  && cd klh10 \
  && git checkout ${KLH10_BUILD_REV} \

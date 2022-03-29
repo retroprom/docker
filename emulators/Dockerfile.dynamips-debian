@@ -17,7 +17,7 @@ ENV DYNAMIPS_BUILD_REV="${DYNAMIPS_REV}"
 
 RUN apt update \
  && apt install --yes --no-install-recommends ${DYNAMIPS_PKG_RUNTIME} \
- && apt clean \
+ && apt clean && rm -rf /var/lib/apt/lists/* \
  && adduser --system --group sim
 
 FROM common as build
@@ -26,7 +26,7 @@ WORKDIR /build
 
 RUN apt update \
  && apt install --yes --no-install-recommends ${DYNAMIPS_PKG_BUILD} \
- && apt clean \
+ && apt clean && rm -rf /var/lib/apt/lists/* \
  && git clone --depth 1 ${DYNAMIPS_BUILD_GIT} dynamips \
  && cd dynamips \
  && git checkout ${DYNAMIPS_BUILD_REV} \
