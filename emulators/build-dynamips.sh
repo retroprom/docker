@@ -6,16 +6,16 @@ DEBIAN_DISTROS="bullseye"
 #time docker build . \
 #	--network host \
 #	-f Dockerfile.dynamips-alpine \
-#	-t "retro-dynamips:alpine-latest" \
+#	-t "retroprom/emulator-dynamips:alpine-latest" \
 #	"$@"
 
 for d in ${DEBIAN_DISTROS}; do
 	time docker build . \
 	     --network host \
 	     -f Dockerfile.dynamips-debian \
-	     -t "retro-dynamips:${d}-latest" \
+	     -t "retroprom/emulator-dynamips:${d}-latest" \
 	     --build-arg BASE="debian:${d}" \
 	     "$@"
 done
 
-docker tag "retro-dynamips:${DEBIAN_DEFAULT}-latest" "retro-dynamips:latest"
+docker tag "retroprom/emulator-dynamips:${DEBIAN_DEFAULT}-latest" "retroprom/emulator-dynamips:latest"

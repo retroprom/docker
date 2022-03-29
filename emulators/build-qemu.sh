@@ -11,7 +11,7 @@ DEBIAN_MISC_TARGETS="alpha hppa s390x"
 #time docker build . \
 #     --network host \
 #     -f Dockerfile.simple-alpine \
-#     -t "retro-qemu-${target}:alpine-latest" \
+#     -t "retroprom/emulator-qemu-${target}:alpine-latest" \
 #     --build-arg SIMPLE_PKG="qemu-system-${target}" \
 #     "$@"
 #done
@@ -21,17 +21,17 @@ for t in ${DEBIAN_SOLO_TARGETS}; do
 		time docker build . \
 		     --network host \
 		     -f Dockerfile.simple-debian \
-		     -t "retro-qemu-${t}:${d}-latest" \
+		     -t "retroprom/emulator-qemu-${t}:${d}-latest" \
 		     --build-arg BASE="debian:${d}" \
 		     --build-arg SIMPLE_PKG="qemu-system-${t}" \
 		     "$@"
 	done
-	docker tag "retro-qemu-${t}:${DEBIAN_DEFAULT}-latest" "retro-qemu-${t}:latest"
+	docker tag "retroprom/emulator-qemu-${t}:${DEBIAN_DEFAULT}-latest" "retroprom/emulator-qemu-${t}:latest"
 done
 
 for t in ${DEBIAN_MISC_TARGETS}; do
 	for d in ${DEBIAN_DISTROS}; do
-		docker tag "retro-qemu-misc:${d}-latest" "retro-qemu-${t}:${d}-latest"
+		docker tag "retroprom/emulator-qemu-misc:${d}-latest" "retroprom/emulator-qemu-${t}:${d}-latest"
 	done
-	docker tag "retro-qemu-misc:latest" "retro-qemu-${t}:latest"
+	docker tag "retroprom/emulator-qemu-misc:latest" "retroprom/emulator-qemu-${t}:latest"
 done
