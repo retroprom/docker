@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd emulators
+cd emulator
 ./build-all.sh
 cd ..
 
