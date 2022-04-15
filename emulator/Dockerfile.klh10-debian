@@ -8,10 +8,10 @@ ARG KLH10_CONFIG=""
 ARG KLH10_GIT="https://github.com/PDP-10/klh10.git"
 ARG KLH10_REV="master"
 
-ENV KLH10_PKG_RUNTIME="ca-certificates dumb-init"
-ENV KLH10_PKG_BUILD="autoconf automake build-essential gcc git-core libtool make libltdl-dev pkg-config"
+ENV KLH10_PKG_RUNTIME="ca-certificates dumb-init libpcap0.8 libvdeplug2 vde2"
+ENV KLH10_PKG_BUILD="autoconf automake build-essential gcc git-core libtool make libltdl-dev pkg-config libpcap-dev libvdeplug-dev"
 
-ENV KLH10_BUILD_CONFIG="--prefix=/usr/local ${KLH10_CONFIG}"
+ENV KLH10_BUILD_CONFIG="--bindir=/bin ${KLH10_CONFIG}"
 ENV KLH10_BUILD_GIT="${KLH10_GIT}"
 ENV KLH10_BUILD_REV="${KLH10_REV}"
 
@@ -34,9 +34,14 @@ RUN apt update \
  && mkdir ../build \
  && cd ../build \
  && ../klh10/configure ${KLH10_BUILD_CONFIG} \
- && make -j4 \
- && make install
+ && make -j4 -C bld-kl \
+ && make -j4 -C bld-ks \
+ && make -j4 -C bld-ks-its \
+ && mkdir -p /opt/klh10-kl/bin /opt/klh10-ks/bin /opt/klh10-ks-its/bin \
+ && make -C bld-kl install DESTDIR=/opt/klh10-kl \
+ && make -C bld-ks install DESTDIR=/opt/klh10-ks \
+ && make -C bld-ks-its install DESTDIR=/opt/klh10-ks-its
 
 FROM common
 
-COPY --from=build /usr/local /usr/local
+COPY --from=build /opt /opt
