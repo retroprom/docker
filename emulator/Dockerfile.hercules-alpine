@@ -47,5 +47,3 @@ RUN apk add --update --virtual hyperion-build ${HYPERION_PKG_BUILD} \
 FROM common
 
 COPY --from=build /usr/local /usr/local
-
-WORKDIR /sim

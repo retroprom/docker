@@ -40,5 +40,3 @@ RUN cd simh/BIN \
 FROM common
 
 COPY --from=build /usr/local /usr/local
-
-WORKDIR /sim

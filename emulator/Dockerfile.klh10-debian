@@ -40,5 +40,3 @@ RUN apt update \
 FROM common
 
 COPY --from=build /usr/local /usr/local
-
-WORKDIR /sim

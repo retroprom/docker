@@ -41,5 +41,3 @@ RUN git clone --depth 1 ${ES40_BUILD_GIT} es40 \
 FROM common
 
 COPY --from=build /usr/local /usr/local
-
-WORKDIR /sim
