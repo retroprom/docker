@@ -4,5 +4,6 @@ set -e
 
 docker build panda-dist \
 	-f Dockerfile \
-	-t retroprom/panda:latest
+	-t retroprom/panda:latest \
+	"$@"
 
