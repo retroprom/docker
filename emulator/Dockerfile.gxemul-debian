@@ -16,7 +16,7 @@ ENV GXEMUL_BUILD_GIT="${GXEMUL_GIT}"
 ENV GXEMUL_BUILD_REV="${GXEMUL_REV}"
 
 RUN apt update \
- && apt install --yes --no-install-recommends ${GXEMUL_PKG_RUNTIME} \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${GXEMUL_PKG_RUNTIME} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
  && adduser --system --group sim
 
@@ -27,7 +27,7 @@ WORKDIR /build
 ENV PREFIX="/usr/local"
 
 RUN apt update \
- && apt install --yes --no-install-recommends ${GXEMUL_PKG_BUILD} \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${GXEMUL_PKG_BUILD} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
  && git clone --depth 1 ${GXEMUL_BUILD_GIT} gxemul \
  && cd gxemul \

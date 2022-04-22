@@ -18,7 +18,7 @@ ENV SIMH_BUILD_GIT="${SIMH_GIT}"
 ENV SIMH_BUILD_REV="${SIMH_REV}"
 
 RUN apt update \
- && apt install --yes --no-install-recommends ${SIMH_PKG_RUNTIME} \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${SIMH_PKG_RUNTIME} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
  && adduser --system --group sim
 
@@ -27,7 +27,7 @@ FROM common AS build
 WORKDIR /build
 
 RUN apt update \
- && apt install --yes --no-install-recommends ${SIMH_PKG_BUILD} \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${SIMH_PKG_BUILD} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
  && git clone --depth 1 ${SIMH_BUILD_GIT} simh \
  && cd simh \
