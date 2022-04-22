@@ -1,6 +1,6 @@
 #!/bin/sh
 
 cd emulator
-./build-all.sh
+./build-all.sh "$@"
 cd ..
 
