@@ -41,7 +41,8 @@ FROM common
 COPY --from=build /usr/local /usr/local
 
 WORKDIR /sim
+
 COPY run.sh .
-RUN chown -R sim.sim . \
- && chmod 755 run.sh
+
+RUN chown -R sim.sim . && chmod 755 run.sh
 
