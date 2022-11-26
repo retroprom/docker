@@ -9,8 +9,8 @@ ARG SIMH_SELECT=""
 ARG SIMH_GIT="https://github.com/simh/simh.git"
 ARG SIMH_REV="master"
 
-ENV SIMH_PKG_RUNTIME="ca-certificates dumb-init libncurses6 libpcap0.8 libpcre3 libvdeplug2"
-ENV SIMH_PKG_BUILD="build-essential gcc git cmake make libncurses-dev libpcap-dev libpcre3-dev libvdeplug-dev"
+ENV SIMH_PKG_RUNTIME="ca-certificates dumb-init libedit2 libncurses6 libpcap0.8 libpcre3 libpng16-16 libsdl2-2.0-0 libvdeplug2"
+ENV SIMH_PKG_BUILD="build-essential gcc git cmake make libedit-dev libncurses-dev libpcap-dev libpcre3-dev libpng-dev libsdl2-dev libsdl2-ttf-dev libvdeplug-dev"
 
 ENV SIMH_BUILD_CONFIG="PREFIX=/usr/local ${SIMH_SELECT} ${SIMH_CONFIG}"
 
