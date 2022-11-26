@@ -3,16 +3,16 @@
 DEBIAN_DEFAULT="bullseye"
 DEBIAN_DISTROS="bullseye"
 
-#time docker build . \
+#time docker build klh10 \
 #	 --network host \
-#	-f Dockerfile.klh10-alpine \
+#	-f klh10/Dockerfile.alpine \
 #	-t "retroprom/emulator-klh10:alpine-latest" \
 #	"$@"
 
 for d in ${DEBIAN_DISTROS}; do
-	time docker build . \
-             --network host \
-	     -f Dockerfile.klh10-debian \
+	time docker build klh10 \
+	     --network host \
+	     -f klh10/Dockerfile.debian \
 	     -t "retroprom/emulator-klh10:${d}-latest" \
 	     --build-arg BASE="debian:${d}" \
 	     "$@"

@@ -3,16 +3,16 @@
 DEBIAN_DEFAULT="bullseye"
 DEBIAN_DISTROS="bullseye"
 
-#time docker build . \
+#time docker build hercules \
 #	 --network host \
-#	-f Dockerfile.hercules-alpine \
+#	-f hercules/Dockerfile.alpine \
 #	-t "retroprom/emulator-hercules:alpine-latest" \
 #	"$@"
 
 for d in ${DEBIAN_DISTROS}; do
-	time docker build . \
+	time docker build hercules \
 	     --network host \
-	     -f Dockerfile.hercules-debian \
+	     -f hercules/Dockerfile.debian \
 	     -t "retroprom/emulator-hercules:${d}-latest" \
 	     --build-arg BASE="debian:${d}" \
 	     "$@"

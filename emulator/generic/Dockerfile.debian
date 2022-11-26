@@ -3,12 +3,12 @@ ARG BASE="debian:stable"
 
 FROM "${BASE}" AS common
 
-ARG SIMPLE_PKG=""
+ARG PACKAGES=""
 
-ENV SIMPLE_PKG_RUNTIME="ca-certificates dumb-init ${SIMPLE_PKG}"
+ENV GENERIC_PKG_RUNTIME="ca-certificates dumb-init ${PACKAGES}"
 
 RUN sed -i -e 's/ main/ main contrib non-free/g' /etc/apt/sources.list \
  && apt update \
- && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${SIMPLE_PKG_RUNTIME} \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${GENERIC_PKG_RUNTIME} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
  && adduser --system --group sim

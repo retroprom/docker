@@ -4,12 +4,12 @@ DEBIAN_DEFAULT="bullseye"
 DEBIAN_DISTROS="bullseye"
 
 for d in ${DEBIAN_DISTROS}; do
-	time docker build . \
+	time docker build generic \
 	     --network host \
-	     -f Dockerfile.simple-debian \
+	     -f generic/Dockerfile.debian \
 	     -t "retroprom/emulator-bochs:${d}-latest" \
 	     --build-arg BASE="debian:${d}" \
-	     --build-arg SIMPLE_PKG="bochs-sdl bochs-term bximage" \
+	     --build-arg PACKAGES="bochs-sdl bochs-term bximage" \
 	     "$@"
 done
 

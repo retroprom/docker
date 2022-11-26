@@ -4,12 +4,12 @@ DEBIAN_DEFAULT="bullseye"
 DEBIAN_DISTROS="bullseye"
 
 for d in ${DEBIAN_DISTROS}; do
-	time docker build . \
+	time docker build generic \
 	     --network host \
-	     -f Dockerfile.simple-debian \
+	     -f generic/Dockerfile.debian \
 	     -t "retroprom/emulator-basilisk:${d}-latest" \
 	     --build-arg BASE="debian:${d}" \
-	     --build-arg SIMPLE_PKG="basilisk2" \
+	     --build-arg PACKAGES="basilisk2" \
 	     "$@"
 done
 

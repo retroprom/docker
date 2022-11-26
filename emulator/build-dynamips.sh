@@ -1,18 +1,20 @@
 #!/bin/bash
 
+set -e
+
 DEBIAN_DEFAULT="bullseye"
 DEBIAN_DISTROS="bullseye"
 
-#time docker build . \
+#docker build dynamips \
 #	--network host \
 #	-f Dockerfile.dynamips-alpine \
 #	-t "retroprom/emulator-dynamips:alpine-latest" \
 #	"$@"
 
 for d in ${DEBIAN_DISTROS}; do
-	time docker build . \
+	docker build dynamips \
 	     --network host \
-	     -f Dockerfile.dynamips-debian \
+	     -f dynamips/Dockerfile.debian \
 	     -t "retroprom/emulator-dynamips:${d}-latest" \
 	     --build-arg BASE="debian:${d}" \
 	     "$@"

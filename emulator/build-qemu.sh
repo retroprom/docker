@@ -12,18 +12,18 @@ DEBIAN_MISC_TARGETS="alpha hppa s390x"
 #     --network host \
 #     -f Dockerfile.simple-alpine \
 #     -t "retroprom/emulator-qemu-${target}:alpine-latest" \
-#     --build-arg SIMPLE_PKG="qemu-system-${target}" \
+#     --build-arg PACKAGES="qemu-system-${target}" \
 #     "$@"
 #done
 
 for t in ${DEBIAN_SOLO_TARGETS}; do
 	for d in ${DEBIAN_DISTROS}; do
-		time docker build . \
+		time docker build generic \
 		     --network host \
-		     -f Dockerfile.simple-debian \
+		     -f generic/Dockerfile.debian \
 		     -t "retroprom/emulator-qemu-${t}:${d}-latest" \
 		     --build-arg BASE="debian:${d}" \
-		     --build-arg SIMPLE_PKG="qemu-system-${t}" \
+		     --build-arg PACKAGES="qemu-system-${t}" \
 		     "$@"
 	done
 	docker tag "retroprom/emulator-qemu-${t}:${DEBIAN_DEFAULT}-latest" "retroprom/emulator-qemu-${t}:latest"

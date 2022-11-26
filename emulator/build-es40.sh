@@ -3,16 +3,16 @@
 DEBIAN_DEFAULT="bullseye"
 DEBIAN_DISTROS="bullseye"
 
-#time docker build . \
+#time docker build es40 \
 #	--network host \
-#	-f Dockerfile.es40-alpine \
+#	-f es40/Dockerfile.alpine \
 #	-t "retroprom/emulator-es40:alpine-latest" \
 #	"$@"
 
 for d in ${DEBIAN_DISTROS}; do
-	time docker build . \
+	time docker build es40 \
 	     --network host \
-	     -f Dockerfile.es40-debian \
+	     -f es40/Dockerfile.debian \
 	     -t "retroprom/emulator-es40:${d}-latest" \
 	     --build-arg BASE="debian:${d}" \
 	     "$@"

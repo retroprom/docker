@@ -3,16 +3,16 @@
 DEBIAN_DEFAULT="bullseye"
 DEBIAN_DISTROS="bullseye"
 
-#time docker build . \
+#time docker build simx \
 #     --network host \
-#     -f Dockerfile.simx-alpine \
+#     -f simx/Dockerfile.alpine \
 #     -t "retroprom/emulator-simx:alpine-latest" \
 #     "$@"
 
 for d in ${DEBIAN_DISTROS}; do
-	time docker build . \
+	time docker build simx \
 	     --network host \
-	     -f Dockerfile.simx-debian \
+	     -f simx/Dockerfile.debian \
 	     -t "retroprom/emulator-simx:${d}-latest" \
 	     --build-arg BASE="debian:${d}" \
 	     "$@"
