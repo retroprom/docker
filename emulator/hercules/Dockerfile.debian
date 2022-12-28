@@ -13,7 +13,7 @@ ARG SOFTFLOAT_REV="master"
 ARG REGINAREXX_CONFIG=""
 ARG REGINAREXX_SVN="https://svn.code.sf.net/p/regina-rexx/code/interpreter/tags/3.9.3/"
 
-ENV HYPERION_PKG_RUNTIME="ca-certificates bzip2 dumb-init libbz2-1.0"
+ENV HYPERION_PKG_RUNTIME="ca-certificates dumb-init bzip2"
 ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ git-core libtool make libbz2-dev libltdl-dev subversion"
 ENV HYPERION_PKG_EXTRA="c3270 htop iproute2 netcat procps psmisc telnet tmux"
 
