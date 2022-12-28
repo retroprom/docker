@@ -6,10 +6,10 @@ FROM ${BASE} AS common
 ARG SIMH_CONFIG="TESTS=0 USE_NETWORK=1"
 ARG SIMH_SELECT=""
 
-ARG SIMH_GIT="https://github.com/simh/simh.git"
+ARG SIMH_GIT="https://github.com/open-simh/simh.git"
 ARG SIMH_REV="master"
 
-ENV SIMH_PKG_RUNTIME="ca-certificates dumb-init libedit2 libncurses6 libpcap0.8 libpcre3 libpng16-16 libsdl2-2.0-0 libvdeplug2"
+ENV SIMH_PKG_RUNTIME="ca-certificates bridge-utils dumb-init iproute2 libedit2 libncurses6 libpcap-dev libpcre3 libpng16-16 libsdl2-2.0-0 libvdeplug2 uml-utilities"
 ENV SIMH_PKG_BUILD="build-essential gcc git cmake make libedit-dev libncurses-dev libpcap-dev libpcre3-dev libpng-dev libsdl2-dev libsdl2-ttf-dev libvdeplug-dev"
 
 ENV SIMH_BUILD_CONFIG="PREFIX=/usr/local ${SIMH_SELECT} ${SIMH_CONFIG}"
