@@ -1,22 +1,30 @@
 
 ARG BASE="debian:stable"
 
+# Create a common base container
 FROM ${BASE} AS common
 
+# Configuration for hercules/hyperion
 ARG HYPERION_CONFIG=""
 ARG HYPERION_GIT="https://github.com/SDL-Hercules-390/hyperion.git"
 ARG HYPERION_REV="master"
 
+# Configuration for the softfloat library
 ARG SOFTFLOAT_GIT="https://github.com/SDL-Hercules-390/SoftFloat.git"
 ARG SOFTFLOAT_REV="master"
 
+# Configuration for the rexx interpreter
 ARG REGINAREXX_CONFIG=""
 ARG REGINAREXX_SVN="https://svn.code.sf.net/p/regina-rexx/code/interpreter/tags/3.9.3/"
 
+# Packages required during runtime
 ENV HYPERION_PKG_RUNTIME="ca-certificates dumb-init bzip2"
+# Pacakges required for building
 ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ git-core libtool make libbz2-dev libltdl-dev subversion"
+# Packages provided for convenience
 ENV HYPERION_PKG_EXTRA="c3270 htop iproute2 netcat procps psmisc telnet tmux"
 
+# Accumulate configuration
 ENV HYPERION_BUILD_CONFIG="--prefix=/usr/local ${HYPERION_CONFIG}"
 ENV HYPERION_BUILD_GIT="${HYPERION_GIT}"
 ENV HYPERION_BUILD_REV="${HYPERION_REV}"
@@ -25,17 +33,22 @@ ENV SOFTFLOAT_BUILD_REV="${SOFTFLOAT_REV}"
 ENV REGINAREXX_BUILD_CONFIG="--prefix=/usr/local ${REGINAREXX_CONFIG}"
 ENV REGINAREXX_BUILD_SVN="${REGINAREXX_SVN}"
 
+# We beed LD_LIBRARY_PATH because of broken rpath
 ENV LD_LIBRARY_PATH "/usr/local/lib"
 
+# Install runtime dependencies and create the 'sim' user
 RUN apt update \
  && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${HYPERION_PKG_RUNTIME} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
  && adduser --system --group --home=/sim sim
 
+# Fork a build container
 FROM common as build
 
+# Clean work directory
 WORKDIR /build
 
+# Perform the entire build in one step
 # NOTE regina-rexx parallel build is broken
 RUN apt update \
  && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${HYPERION_PKG_BUILD} \
@@ -62,18 +75,24 @@ RUN apt update \
  && make -j4 \
  && make install
 
+# Fork the final container
 FROM common
 
+# Copy build results
 COPY --from=build /usr/local /usr/local
 
+# Install extra packages
 RUN apt update \
  && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${HYPERION_PKG_EXTRA} \
  && apt clean && rm -rf /var/lib/apt/lists/*
 
+# Install the run script
 COPY run.sh /sim/run.sh
 RUN chmod 755 /sim/run.sh
 
+# Set up for launch
 USER sim
 WORKDIR /sim
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
 CMD [ "/sim/run.sh" ]
+
