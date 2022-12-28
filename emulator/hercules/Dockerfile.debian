@@ -15,6 +15,7 @@ ARG REGINAREXX_SVN="https://svn.code.sf.net/p/regina-rexx/code/interpreter/tags/
 
 ENV HYPERION_PKG_RUNTIME="ca-certificates bzip2 dumb-init libbz2-1.0"
 ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ git-core libtool make libbz2-dev libltdl-dev subversion"
+ENV HYPERION_PKG_EXTRA="c3270 htop iproute2 netcat procps psmisc telnet tmux"
 
 ENV HYPERION_BUILD_CONFIG="--prefix=/usr/local ${HYPERION_CONFIG}"
 ENV HYPERION_BUILD_GIT="${HYPERION_GIT}"
@@ -64,6 +65,10 @@ RUN apt update \
 FROM common
 
 COPY --from=build /usr/local /usr/local
+
+RUN apt update \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${HYPERION_PKG_EXTRA} \
+ && apt clean && rm -rf /var/lib/apt/lists/*
 
 COPY run.sh /sim/run.sh
 RUN chmod 755 /sim/run.sh
