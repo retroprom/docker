@@ -5,15 +5,14 @@ FROM ${BASE}
 
 # Deploy provided files
 COPY * /sim/
+USER root
 RUN chown -R sim.sim /sim
 
 # Run as a user
 USER sim
 WORKDIR /sim
 
-# Use dumb-init
+# Use dumb-init and start our script
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
-
-# Start using run script
 CMD [ "/sim/run.sh" ]
 
