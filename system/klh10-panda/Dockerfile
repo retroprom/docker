@@ -1,5 +1,5 @@
 
-ARG BASE="retroprom/emulator-klh10"
+ARG BASE="retroprom/klh10"
 
 FROM ${BASE}
 
@@ -14,4 +14,5 @@ RUN chmod 755 run.sh
 RUN cp -r /opt/klh10-kl/bin/* .
 
 USER sim
+CMD ./run.sh
 

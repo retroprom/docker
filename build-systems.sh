@@ -4,7 +4,7 @@ set -e
 
 ROOT=$PWD
 
-SYSTEMS="panda simh"
+SYSTEMS="klh10-panda simh-kits"
 
 for system in ${SYSTEMS}; do
 	if [ -x system/${system}/build.sh ]; then
