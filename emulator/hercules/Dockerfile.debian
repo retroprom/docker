@@ -64,3 +64,11 @@ RUN apt update \
 FROM common
 
 COPY --from=build /usr/local /usr/local
+
+COPY run.sh /sim/run.sh
+RUN chmod 755 /sim/run.sh
+
+USER sim
+WORKDIR /sim
+ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
+CMD [ "/sim/run.sh" ]

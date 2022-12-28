@@ -4,7 +4,7 @@ ARG BASE="debian:stable"
 FROM ${BASE} AS common
 
 ARG SIMH_CONFIG="TESTS=0 USE_NETWORK=1"
-ARG SIMH_SELECT=""
+ARG SIMH_SIMULATOR="pdp11"
 
 ARG SIMH_GIT="https://github.com/open-simh/simh.git"
 ARG SIMH_REV="master"
@@ -16,6 +16,8 @@ ENV SIMH_BUILD_CONFIG="PREFIX=/usr/local ${SIMH_SELECT} ${SIMH_CONFIG}"
 
 ENV SIMH_BUILD_GIT="${SIMH_GIT}"
 ENV SIMH_BUILD_REV="${SIMH_REV}"
+
+ENV SIMH_SIMULATOR="${SIMH_SIMULATOR}"
 
 RUN apt update \
  && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${SIMH_PKG_RUNTIME} \
@@ -40,3 +42,12 @@ RUN cd simh/BIN \
 FROM common
 
 COPY --from=build /usr/local /usr/local
+
+COPY run.sh /sim/run.sh
+RUN chmod 755 /sim/run.sh
+
+USER sim
+WORKDIR /sim
+ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
+CMD [ "/sim/run.sh" ]
+
