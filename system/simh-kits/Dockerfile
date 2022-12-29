@@ -3,6 +3,11 @@ ARG BASE="retroprom/simh:latest"
 
 FROM ${BASE}
 
+ARG SIMULATOR="pdp11"
+
+# Override simulator
+ENV SIMH_SIMULATOR="${SIMULATOR}"
+
 # Deploy provided files
 COPY * /sim/
 USER root
