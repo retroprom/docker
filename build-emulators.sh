@@ -4,8 +4,8 @@ set -e
 
 ROOT=$PWD
 
-BASE="debian:bullseye"
-EMULATORS="dynamips es40 gxemul hercules klh10 simh"
+BASE="debian:bookworm"
+EMULATORS="dynamips es40 gxemul hercules klh10"
 
 for emulator in ${EMULATORS}; do
 	docker build \
