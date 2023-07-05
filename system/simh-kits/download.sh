@@ -18,6 +18,14 @@ get rtv53swre.tar.Z
 get uv5swre.zip
 get uv6swre.zip
 get uv7swre.zip
+# DEC PDP-8 software
+get foclswre.tar.Z
+get os8swre.tar.Z
+get tss8.zip
+get dms8.zip
+# Data General RDOS
+get rdosswre.tar.Z
+get zrdos75.zip
 # Interdata UNIX
 get iu6swre.zip
 get iu7swre.zip
