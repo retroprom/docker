@@ -1,1 +1,1 @@
-## SIMH OS/32 distribution
+## SIMH OS/32 Distribution
