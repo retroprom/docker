@@ -2,24 +2,55 @@
 
 This is set of recipes for building retrocomputing emulators as Docker images.
 
+The goal is to make retro systems easy to run and composable.
+
 ### Emulators
 
-This section documents the general status for each emulator.
+A full build will provide you with the following emulators.
 
-| Image name | Emulator | Status | Description |
-| ---------- | -------- | ------ | ----------- |
-| retroprom/emulator-basilisk | [BasiliskII](https://github.com/cebix/macemu/) | Untested | Apple Macintosh 68k emulator |
-| retroprom/emulator-bochs | [bochs](https://bochs.sourceforge.io/) | Untested | Bochs emulator for Intel X86 PCs |
-| retroprom/emulator-dynamips | [Dynamips](https://github.com/GNS3/dynamips/) | Untested | Cisco router emulator for running Cisco IOS |
-| retroprom/emulator-es40 | [ES40](https://github.com/retroprom/es40/) | Untested | DEC Alpha emulator named after the DS40 |
-| retroprom/emulator-gxemul | [GXemul](http://gavare.se/gxemul/) | Untested | Gavare's eXperimental Emulator |
-| retroprom/emulator-hercules | [Hercules](https://github.com/SDL-Hercules-390/hyperion/) | Untested | IBM mainframe emulator for S/360 through z/Arch |
-| retroprom/emulator-klh10 | [KLH-10](https://github.com/PDP-10/klh10/) | Untested | DEC PDP-10 emulator, originally by Ken L. Harenstien |
-| retroprom/emulator-qemu-alpha | [QEMU](https://qemu.org) | Untested | QEMU for DEC Alpha |
-| retroprom/emulator-qemu-hppa | [QEMU](https://qemu.org) | Untested | QEMU for HP PA-RISC |
-| retroprom/emulator-qemu-ppc | [QEMU](https://qemu.org) | Untested | QEMU for PowerPC |
-| retroprom/emulator-qemu-s390x | [QEMU](https://qemu.org) | Untested | QEMU for IBM z/Arch |
-| retroprom/emulator-qemu-sparc | [QEMU](https://qemu.org) | Untested | QEMU for Sun SPARC |
-| retroprom/emulator-qemu-x86 | [QEMU](https://qemu.org) | Working | QEMU for Intel X86 PCs |
-| retroprom/emulator-simh | [SIMH](https://github.com/simh/simh/) | Working | Simulator for DEC and other historic systems |
-| retroprom/emulator-simx | [SIMX](https://github.com/retroprom/simx/) | Working | Modified version of SIMH by @retroprom |
+| Image name | Emulator | Description |
+| ---------- | -------- | ----------- |
+| retroprom/craysim | [cray-sim](https://github.com/andrastantos/cray-sim/) | Cray simulator |
+| retroprom/dynamips | [Dynamips](https://github.com/GNS3/dynamips/) | Cisco router emulator for running Cisco IOS |
+| retroprom/es40 | [ES40](https://github.com/retroprom/es40/) | DEC Alpha emulator named after the DS40 |
+| retroprom/gxemul | [GXemul](http://gavare.se/gxemul/) | Gavare's eXperimental Emulator |
+| retroprom/hercules | [Hercules](https://github.com/SDL-Hercules-390/hyperion/) | IBM mainframe emulator for S/360 through z/Arch |
+| retroprom/klh10 | [KLH-10](https://github.com/PDP-10/klh10/) | DEC PDP-10 emulator, originally by Ken L. Harenstien |
+| retroprom/simh | [Open-SIMH](https://github.com/open-simh/simh/) | Simulator for DEC and other historic systems |
+
+### Systems
+
+We also provide scripts for building some system images.
+
+| Image name | Emulator | Machine | System | Distribution |
+| ---------- | -------- | ------- | ------ | ------------ |
+| retroprom/klh10-panda | KLH-10 | DEC PDP-10 | TOPS-20 | PANDA |
+| retroprom/simh-kit-id32-unix-v6 | SIMH | Interdata 7/32 | UNIX V6 | SIMH |
+| retroprom/simh-kit-id32-unix-v7 | SIMH | Interdata 7/32 | UNIX V7 | SIMH |
+| retroprom/simh-kit-pdp11-rsts-v7 | SIMH | DEC PDP-11/?? | RSTS/E V7 | SIMH |
+| retroprom/simh-kit-pdp11-rt11-v4 | SIMH | DEC PDP-11/23 | RT-11 V4 | SIMH |
+| retroprom/simh-kit-pdp11-rt11-v5 | SIMH | DEC PDP-11/23 | RT-11 V5 | SIMH |
+| retroprom/simh-kit-pdp11-unix-v5 | SIMH | DEC PDP-11/45 | UNIX V5 | SIMH |
+| retroprom/simh-kit-pdp11-unix-v6 | SIMH | DEC PDP-11/45 | UNIX V6 | SIMH |
+| retroprom/simh-kit-pdp11-unix-v7 | SIMH | DEC PDP-11/45 | UNIX V7 | SIMH |
+
+### Some Quick Notes
+
+Feel free to send patches or ask questions.
+
+This is obviously a hobby project.
+
+Images are currently based on Debian (release 12/bookworm).
+
+The images use a build container to minimize image size.
+
+A simulator user called 'sim' is usually provided.
+
+Emulators are installed in /usr/local when possible.
+
+Other simulator files are located in /sim.
+
+Images should be set up to start the emulator using dumb-init.
+
+System images usually start in the foreground and require a terminal.
+
