@@ -11,6 +11,6 @@ for system in ${SYSTEMS}; do
 		cd $ROOT/system/${system}
 		if [ -x download.sh ]; then ./download.sh; fi
 		if [ -x extract.sh ]; then ./extract.sh; fi
-		./build.sh
+		./build.sh "$@"
 	fi
 done
