@@ -1,8 +1,2 @@
 *~
-system/cisco/images
-system/panda/panda-dist
-system/panda/panda-dist.tar.gz
-system/simh/download
-system/simh/*/README.txt
-system/simh/*/AncientUnix.pdf
-system/simh/*/*.dsk
+
