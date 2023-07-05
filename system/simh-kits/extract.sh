@@ -16,28 +16,33 @@ enter() {
     cd $ROOT/build/$1
 }
 
-enter id32-unix-v6
-unzip -u $DIST/iu6swre.zip
+# DEC PDP-8
+enter pdp8-dms
+unzip -u -b $DIST/dms8.zip
+enter pdp8-focal
+tar xfvz $DIST/foclswre.tar.Z
+enter pdp8-os8
+tar xfvz $DIST/os8swre.tar.Z
+enter pdp8-tss8
+unzip -u -b $DIST/tss8.zip
 
-enter id32-unix-v7
-unzip -u $DIST/iu7swre.zip
-
+# DEC PDP-11
 enter pdp11-rsts-v7
 tar xfvz $DIST/rstsv7gen.tar.Z
 tar xfvz $DIST/rstsv7swre.tar.Z
-
 enter pdp11-rt11-v4
 tar xfvz $DIST/rt11swre.tar.Z
-
 enter pdp11-rt11-v5;
 tar xfvz $DIST/rtv53swre.tar.Z
-
 enter pdp11-unix-v5;
-unzip -u $DIST/uv5swre.zip
-
+unzip -u -b $DIST/uv5swre.zip
 enter pdp11-unix-v6;
-unzip -u $DIST/uv6swre.zip
-
+unzip -u -b $DIST/uv6swre.zip
 enter pdp11-unix-v7;
-unzip -u $DIST/uv7swre.zip
+unzip -u -b $DIST/uv7swre.zip
 
+# Interdata 32
+enter id32-unix-v6
+unzip -u -b $DIST/iu6swre.zip
+enter id32-unix-v7
+unzip -u -b $DIST/iu7swre.zip

@@ -11,7 +11,7 @@ ENV SIMH_SIMULATOR="${SIMULATOR}"
 # Deploy provided files
 COPY * /sim/
 USER root
-RUN chown -R sim.sim /sim
+RUN chown -R sim:sim /sim
 
 # Run as a user
 USER sim
