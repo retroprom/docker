@@ -19,6 +19,6 @@ docker build build/pdp11-unix-v7 -f Dockerfile -t retroprom/simh-kit-pdp11-unix-
 
 # remove old images (for rename)
 for n in id32-unix-v6 id32-unix-v7 pdp11-rsts-v7 pdp11-rt11-v4 pdp11-rt11-v5 pdp11-unix-v5 pdp11-unix-v6 pdp11-unix-v7; do
-    docker image rm "retroprom/simh-$n:latest"
+    docker image rm -f "retroprom/simh-$n:latest"
 done
 
