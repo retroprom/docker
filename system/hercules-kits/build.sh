@@ -8,6 +8,12 @@ fi
 
 ./extract.sh
 
+if [ -d build/dosvs-5pack ]; then
+  docker build build/dosvs-5pack -f Dockerfile -t retroprom/hercules-dosvs-5pack:latest "$@"
+fi
+if [ -d build/mvs-tk3 ]; then
+  docker build build/mvs-tk3 -f Dockerfile -t retroprom/hercules-mvs-tk3:latest "$@"
+fi
 if [ -d build/mvs-tk4 ]; then
   docker build build/mvs-tk4 -f Dockerfile -t retroprom/hercules-mvs-tk4:latest "$@"
 fi

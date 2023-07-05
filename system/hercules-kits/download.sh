@@ -4,7 +4,9 @@ set -e
 
 get() {
   mkdir -p "download/$1"
-  wget -c --no-check-certificate -O "download/$1/$2" "$3"
+  if [ ! -f "download/$1/$2" ]; then
+    wget -c --no-check-certificate -O "download/$1/$2" "$3"
+  fi
 }
 
 get_mvs_tk4() {

@@ -22,6 +22,16 @@ unzip_unroot() {
     rmdir $2
 }
 
+if [ -e $DIST/dosvs-5pack/DOSVS_5Pack_V1.0-full.zip ]; then
+    enter dosvs-5pack
+    unzip -u $DIST/dosvs-5pack/DOSVS_5Pack_V1.0-full.zip
+fi
+
+if [ -e $DIST/mvs-tk3/MVS_Turnkey_Volker_V3.zip ]; then
+    enter mvs-tk3
+    unzip -u $DIST/mvs-tk3/MVS_Turnkey_Volker_V3.zip
+fi
+
 if [ -e $DIST/mvs-tk4/tk4-_v1.00_current.zip ]; then
     enter mvs-tk4
     unzip -u $DIST/mvs-tk4/tk4-_v1.00_current.zip
