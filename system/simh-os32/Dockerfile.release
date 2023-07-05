@@ -1,0 +1,11 @@
+
+ARG BASE="retroprom/simh:latest"
+
+FROM ${BASE}
+
+ENV SIMH_SIMULATOR="id32"
+
+USER sim
+WORKDIR /sim
+
+COPY ./ /sim/

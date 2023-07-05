@@ -1,0 +1,34 @@
+
+ARG BASE="retroprom/simh:latest"
+
+FROM ${BASE}
+
+ENV OS32_GIT="https://github.com/davygoat/simh-os32.git"
+ENV OS32_REV="main"
+
+ENV OS32_PKG="ca-certificates build-essential dumb-init git make psmisc"
+
+ENV SIMH_SIMULATOR="id32"
+
+USER root
+
+RUN apt update \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${OS32_PKG} \
+ && apt clean && rm -rf /var/lib/apt/lists/* \
+ && adduser --system --group --home=/sim sim \
+ && cd /dev && mknod tty c 5 0
+
+# Build and run as user
+USER sim
+WORKDIR /sim
+
+# Build OS/32
+RUN git clone ${OS32_GIT} dist \
+ && cd dist \
+ && git checkout ${OS32_REV} \
+ && make open \
+ && ./rebuild-system.sh
+
+# Use dumb-init and start our script
+ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
+#CMD [ "/sim/run.sh" ]
