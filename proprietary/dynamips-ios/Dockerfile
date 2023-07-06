@@ -1,5 +1,5 @@
 
-ARG BASE="retroprom/emulator-dynamips"
+ARG BASE="retroprom/dynamips"
 
 FROM ${BASE}
 
