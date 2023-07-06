@@ -1,30 +1,38 @@
 
+# Base image
 ARG BASE="debian:stable"
+
+# **** Common environment
 
 FROM ${BASE} AS common
 
+# SIMH configuration
 ARG SIMH_CONFIG="TESTS=0 USE_NETWORK=1"
-
 ARG SIMH_GIT="https://github.com/open-simh/simh.git"
 ARG SIMH_REV="master"
 
+# Package dependencies
 ENV SIMH_PKG_RUNTIME="ca-certificates bridge-utils dumb-init iproute2 libedit2 libncurses6 libpcap-dev libpcre3 libpng16-16 libsdl2-2.0-0 libvdeplug2 uml-utilities"
 ENV SIMH_PKG_BUILD="build-essential gcc git cmake make libedit-dev libncurses-dev libpcap-dev libpcre3-dev libpng-dev libsdl2-dev libsdl2-ttf-dev libvdeplug-dev"
 
+# Build configuration
 ENV SIMH_BUILD_CONFIG="PREFIX=/usr/local ${SIMH_SELECT} ${SIMH_CONFIG}"
-
 ENV SIMH_BUILD_GIT="${SIMH_GIT}"
 ENV SIMH_BUILD_REV="${SIMH_REV}"
 
+# Install runtime dependencies
 RUN apt update \
  && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${SIMH_PKG_RUNTIME} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
  && adduser --system --group --home=/sim sim
 
+# **** Build environment
+
 FROM common AS build
 
 WORKDIR /build
 
+# Install build dependencies and build SIMH
 RUN apt update \
  && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${SIMH_PKG_BUILD} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
@@ -33,16 +41,21 @@ RUN apt update \
  && git checkout ${SIMH_BUILD_REV} \
  && make -j2 ${SIMH_CONFIG}
 
-RUN cd simh/BIN \
- && cp `ls -p . | grep -v '/$'` /usr/local/bin
+# Install binaries
+RUN cd simh/BIN && cp `ls -p . | grep -v '/$'` /usr/local/bin
+
+# **** Final environment
 
 FROM common
 
+# Copy binaries from build environment
 COPY --from=build /usr/local /usr/local
 
+# Install start script
 COPY run.sh /sim/run.sh
 RUN chmod 755 /sim/run.sh
 
+# Configure initial environment
 USER sim
 WORKDIR /sim
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
