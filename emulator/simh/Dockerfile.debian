@@ -7,7 +7,7 @@ ARG BASE="debian:stable"
 FROM ${BASE} AS common
 
 # SIMH configuration
-ARG SIMH_CONFIG="TESTS=0 USE_NETWORK=1"
+ARG SIMH_CONFIG="TESTS=0"
 ARG SIMH_GIT="https://github.com/open-simh/simh.git"
 ARG SIMH_REV="master"
 
@@ -39,7 +39,7 @@ RUN apt update \
  && git clone --depth 1 ${SIMH_BUILD_GIT} simh \
  && cd simh \
  && git checkout ${SIMH_BUILD_REV} \
- && make -j2 ${SIMH_CONFIG}
+ && make -j2 ${SIMH_BUILD_CONFIG}
 
 # Install binaries
 RUN cd simh/BIN && cp `ls -p . | grep -v '/$'` /usr/local/bin
