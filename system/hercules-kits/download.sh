@@ -16,7 +16,7 @@ get_vm370_ce() {
 }
 
 # DOS/VS 5-pack
-get dosvs-5pack DOSVS_5Pack_V1.0-full.zip http://www.vm370.org/sites/default/files/2022-07/DOSVS_5Pack_V1.0-full.zip
+get dosvs-5pk DOSVS_5Pack_V1.0-full.zip http://www.vm370.org/sites/default/files/2022-07/DOSVS_5Pack_V1.0-full.zip
 
 # MVS TK3
 #get mvs-tk3 MVS_Turnkey_Volker_V3.zip ftp://cbttape.org/pub/cdimages/MVS_Turnkey_Volker_V3.zip

@@ -9,8 +9,8 @@ fi
 ./extract.sh
 
 # DOS/VS 5-pack
-if [ -d build/dosvs-5pack ]; then
-  docker build build/dosvs-5pack -f Dockerfile -t retroprom/hercules-dosvs-5pack:latest "$@"
+if [ -d build/dosvs-5pk ]; then
+  docker build build/dosvs-5pk -f Dockerfile -t retroprom/hercules-dosvs-5pk:latest "$@"
 fi
 
 # MVS TK3
@@ -24,7 +24,7 @@ if [ -d build/mvs-tk4 ]; then
 fi
 
 # MVS CE
-if [ -d build/mvs-ce-1.0.6 ]; then
+if [ -d build/mvs-ce-v1.0.6 ]; then
   docker build build/mvs-ce-v1.0.6 -f Dockerfile -t retroprom/hercules-mvs-ce:v1.0.6 "$@"
   docker tag retroprom/hercules-mvs-ce:v1.0.6 retroprom/hercules-mvs-ce:latest
 fi

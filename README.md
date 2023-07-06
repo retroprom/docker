@@ -24,8 +24,10 @@ We also provide scripts for building some system images.
 
 | Image name | Emulator | Machine | System | Distribution |
 | ---------- | -------- | ------- | ------ | ------------ |
-| retroprom/hercules-mvs-tk3 | Hercules | IBM 3390 | MVS 3.8J | TK3 |
-| retroprom/hercules-mvs-tk4 | Hercules | IBM 3390 | MVS 3.8J | TK4- |
+| retroprom/hercules-dosvs-5pk | Hercules | IBM S/370 | DOS/VS | 5-pack |
+| retroprom/hercules-mvs-ce | Hercules | IBM S/370 | MVS 3.8J | MVS/CE |
+| retroprom/hercules-mvs-tk3 | Hercules | IBM S/370 | MVS 3.8J | TK3 |
+| retroprom/hercules-mvs-tk4 | Hercules | IBM S/370 | MVS 3.8J | TK4- |
 | retroprom/hercules-vm370-ce | Hercules | IBM 3390 | VM/370 | VM/370 CE |
 | retroprom/klh10-panda | KLH-10 | DEC PDP-10 | TOPS-20 | PANDA |
 | retroprom/simh-id32-os32 | SIMH | Interdata 8/32 | OS/32 | simh-os32 |

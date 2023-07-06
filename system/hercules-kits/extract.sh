@@ -24,7 +24,7 @@ unzip_unroot() {
 
 # DOS/VS 5-pack
 if [ -e $DIST/dosvs-5pack/DOSVS_5Pack_V1.0-full.zip ]; then
-    enter dosvs-5pack
+    enter dosvs-5pk
     unzip -u $DIST/dosvs-5pack/DOSVS_5Pack_V1.0-full.zip
 fi
 
@@ -40,6 +40,7 @@ if [ -e $DIST/mvs-tk4/tk4-_v1.00_current.zip ]; then
     unzip -u $DIST/mvs-tk4/tk4-_v1.00_current.zip
     unzip -u $DIST/mvs-tk4/tk4-cbt.zip
     unzip -u $DIST/mvs-tk4/tk4-source.zip
+    rm -rf hercules
 fi
 
 # MVS CE
@@ -54,9 +55,11 @@ fi
 if [ -e $DIST/vm370-ce/VM370CE.V1.R1.1.zip ]; then
     enter vm370-ce-v1-r1.1
     unzip_unroot $DIST/vm370-ce/VM370CE.V1.R1.1.zip VM370CE.V1.R1.1
+    rm -rf WC3270
 fi
 if [ -e $DIST/vm370-ce/VM370CE.V1.R1.2.zip ]; then
     enter vm370-ce-v1-r1.2
     unzip_unroot $DIST/vm370-ce/VM370CE.V1.R1.2.zip VM370CE.V1.R1.2
+    rm -rf WC3270
 fi
 

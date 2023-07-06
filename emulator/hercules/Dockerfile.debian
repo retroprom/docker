@@ -7,31 +7,25 @@ ARG BASE="debian:stable"
 FROM ${BASE} AS common
 
 # Configuration for the Hercules/Hyperion simulator
-ARG HYPERION_CONFIG=""
+ARG HYPERION_CONFIG="--enable-regina-rexx"
 ARG HYPERION_GIT="https://github.com/SDL-Hercules-390/hyperion.git"
 ARG HYPERION_REV="master"
-
-# Configuration for the SoftFloat library
-ARG SOFTFLOAT_GIT="https://github.com/SDL-Hercules-390/SoftFloat.git"
-ARG SOFTFLOAT_REV="master"
 
 # Configuration for the Regina Rexx interpreter
 ARG REGINAREXX_CONFIG=""
 ARG REGINAREXX_SVN="https://svn.code.sf.net/p/regina-rexx/code/interpreter/tags/3.9.3/"
 
 # Packages required during runtime
-ENV HYPERION_PKG_RUNTIME="ca-certificates dumb-init bzip2"
+ENV HYPERION_PKG_RUNTIME="ca-certificates dumb-init bzip2 zlib1g"
 # Pacakges required for building
-ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ git-core libtool make libbz2-dev libltdl-dev subversion"
+ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ git-core libtool make libbz2-dev libltdl-dev zlib1g-dev subversion"
 # Packages provided for convenience
-ENV HYPERION_PKG_EXTRA="c3270 htop iproute2 netcat-openbsd procps psmisc telnet tmux"
+ENV HYPERION_PKG_EXTRA="b3270 c3270 s3270 htop iproute2 netcat-openbsd procps psmisc telnet tmux"
 
 # Accumulate configuration
 ENV HYPERION_BUILD_CONFIG="--prefix=/usr/local ${HYPERION_CONFIG}"
 ENV HYPERION_BUILD_GIT="${HYPERION_GIT}"
 ENV HYPERION_BUILD_REV="${HYPERION_REV}"
-ENV SOFTFLOAT_BUILD_GIT="${SOFTFLOAT_GIT}"
-ENV SOFTFLOAT_BUILD_REV="${SOFTFLOAT_REV}"
 ENV REGINAREXX_BUILD_CONFIG="--prefix=/usr/local ${REGINAREXX_CONFIG}"
 ENV REGINAREXX_BUILD_SVN="${REGINAREXX_SVN}"
 
@@ -65,12 +59,6 @@ RUN apt update \
  && git clone --depth 1 ${HYPERION_BUILD_GIT} hyperion \
  && cd hyperion \
  && git checkout ${HYPERION_BUILD_REV} \
- && cd .. \
- && git clone --depth 1 ${SOFTFLOAT_BUILD_GIT} sf3a \
- && cd sf3a \
- && git checkout ${SOFTFLOAT_BUILD_REV} \
- && cd .. \
- && cd hyperion \
  && ./autogen.sh \
  && mkdir ../build \
  && cd ../build \
@@ -80,10 +68,10 @@ RUN apt update \
 
 # **** Final environment
 
-FROM common
+#FROM common
 
 # Copy build results
-COPY --from=build /usr/local /usr/local
+#COPY --from=build /usr/local /usr/local
 
 # Install extra packages
 RUN apt update \

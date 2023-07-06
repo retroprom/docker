@@ -3,7 +3,11 @@ ARG BASE="retroprom/hercules:latest"
 
 FROM ${BASE}
 
-USER sim
-WORKDIR /sim
+USER root
 
 COPY / /sim/
+
+RUN chown -R sim:sim /sim/
+
+USER sim
+WORKDIR /sim
