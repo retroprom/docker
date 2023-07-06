@@ -31,7 +31,7 @@ RUN apt update \
  && git clone --depth 1 ${SIMH_BUILD_GIT} simh \
  && cd simh \
  && git checkout ${SIMH_BUILD_REV} \
- && make -j2 TESTS=0
+ && make -j2 ${SIMH_CONFIG}
 
 RUN cd simh/BIN \
  && cp `ls -p . | grep -v '/$'` /usr/local/bin
