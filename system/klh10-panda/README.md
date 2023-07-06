@@ -1,1 +1,1 @@
-## Panda TOPS-20 distribution
+## KLH-10 running Panda TOPS-20
