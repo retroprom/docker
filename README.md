@@ -24,15 +24,23 @@ We also provide scripts for building some system images.
 
 | Image name | Emulator | Machine | System | Distribution |
 | ---------- | -------- | ------- | ------ | ------------ |
+| retroprom/hercules-mvs-tk3 | Hercules | IBM 3390 | MVS 3.8J | TK3 |
+| retroprom/hercules-mvs-tk4 | Hercules | IBM 3390 | MVS 3.8J | TK4- |
+| retroprom/hercules-vm370-ce | Hercules | IBM 3390 | VM/370 | VM/370 CE |
 | retroprom/klh10-panda | KLH-10 | DEC PDP-10 | TOPS-20 | PANDA |
-| retroprom/simh-kit-id32-unix-v6 | SIMH | Interdata 7/32 | UNIX V6 | SIMH |
-| retroprom/simh-kit-id32-unix-v7 | SIMH | Interdata 7/32 | UNIX V7 | SIMH |
-| retroprom/simh-kit-pdp11-rsts-v7 | SIMH | DEC PDP-11/?? | RSTS/E V7 | SIMH |
-| retroprom/simh-kit-pdp11-rt11-v4 | SIMH | DEC PDP-11/23 | RT-11 V4 | SIMH |
-| retroprom/simh-kit-pdp11-rt11-v5 | SIMH | DEC PDP-11/23 | RT-11 V5 | SIMH |
-| retroprom/simh-kit-pdp11-unix-v5 | SIMH | DEC PDP-11/45 | UNIX V5 | SIMH |
-| retroprom/simh-kit-pdp11-unix-v6 | SIMH | DEC PDP-11/45 | UNIX V6 | SIMH |
-| retroprom/simh-kit-pdp11-unix-v7 | SIMH | DEC PDP-11/45 | UNIX V7 | SIMH |
+| retroprom/simh-id32-os32 | SIMH | Interdata 8/32 | OS/32 | simh-os32 |
+| retroprom/simh-id32-unix-v6 | SIMH | Interdata 7/32 | UNIX V6 | SIMH |
+| retroprom/simh-id32-unix-v7 | SIMH | Interdata 7/32 | UNIX V7 | SIMH |
+| retroprom/simh-pdp8-dms | SIMH | DEC PDP-8 | DMS | SIMH |
+| retroprom/simh-pdp8-focal | SIMH | DEC PDP-8 | FOCAL | SIMH |
+| retroprom/simh-pdp8-os8 | SIMH | DEC PDP-8 | OS/8 | SIMH |
+| retroprom/simh-pdp8-tss8 | SIMH | DEC PDP-8 | TSS/8 | SIMH |
+| retroprom/simh-pdp11-rsts-v7 | SIMH | DEC PDP-11/73 | RSTS/E V7 | SIMH |
+| retroprom/simh-pdp11-rt11-v4 | SIMH | DEC PDP-11/23 | RT-11 V4 | SIMH |
+| retroprom/simh-pdp11-rt11-v5 | SIMH | DEC PDP-11/23 | RT-11 V5 | SIMH |
+| retroprom/simh-pdp11-unix-v5 | SIMH | DEC PDP-11/45 | UNIX V5 | SIMH |
+| retroprom/simh-pdp11-unix-v6 | SIMH | DEC PDP-11/45 | UNIX V6 | SIMH |
+| retroprom/simh-pdp11-unix-v7 | SIMH | DEC PDP-11/45 | UNIX V7 | SIMH |
 
 ### Some Quick Notes
 
