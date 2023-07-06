@@ -68,10 +68,10 @@ RUN apt update \
 
 # **** Final environment
 
-#FROM common
+FROM common
 
 # Copy build results
-#COPY --from=build /usr/local /usr/local
+COPY --from=build /usr/local /usr/local
 
 # Install extra packages
 RUN apt update \
