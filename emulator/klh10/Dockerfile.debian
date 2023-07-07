@@ -44,4 +44,16 @@ RUN apt update \
 
 FROM common
 
+ENV KLH10_VARIANT="kl"
+ENV KLH10_STARTUP="klh10.ini"
+ENV KLH10_OPTIONS=""
+
 COPY --from=build /opt /opt
+
+COPY run.sh /sim/run.sh
+RUN chmod 755 /sim/run.sh
+
+USER sim
+WORKDIR /sim
+ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
+CMD [ "/sim/run.sh" ]
