@@ -51,21 +51,30 @@ if [ -e $DIST/mvs-ce/MVSCE.release.v1.0.6.tar ]; then
     tar xfv $DIST/mvs-ce/MVSCE.release.v1.0.6.tar
     mv MVSCE/* .
     rmdir MVSCE
-    mv start_mvs.sh run.sh
+    rm start_mvs.sh
+    mv conf/local.cnf hercules.ini
+    mv conf/mvsce.rc  hercules.rc
+    rmdir conf
 fi
 
 # VM/370 CE
 if [ -e $DIST/vm370-ce/VM370CE.V1.R1.1.zip ]; then
     enter vm370-ce-v1-r1.1
     unzip_unroot $DIST/vm370-ce/VM370CE.V1.R1.1.zip VM370CE.V1.R1.1
-    rm -rf WC3270
+    rm -rf WC3270 log.txt
+    rm vm370ce.sh vm3270.cmd
+    mv vm370ce.conf hercules.ini
 fi
 if [ -e $DIST/vm370-ce/VM370CE.V1.R1.2.zip ]; then
     enter vm370-ce-v1-r1.2
     unzip_unroot $DIST/vm370-ce/VM370CE.V1.R1.2.zip VM370CE.V1.R1.2
-    rm -rf WC3270
+    rm -rf WC3270 log.txt
+    rm vm370ce.sh vm370ce.cmd
+    mv vm370ce.conf hercules.ini
 fi
 
 # Fix script permissions
 cd $ROOT
+fromdos build/*/hercules.ini
+fromdos build/*/hercules.rc
 chmod +x build/*/*.sh
