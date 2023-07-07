@@ -25,7 +25,7 @@ if ! tmux has-session -t "${TMUX_SESSION}"; then
 fi
 # Check again, fail if we could not create it
 if ! tmux has-session -t "${TMUX_SESSION}"; then
-    echo "ERROR starting tmux session, tried:"
+    echo "ERROR starting TMUX session, tried:"
     cat "${START}"
     exit 1
 fi
@@ -33,14 +33,17 @@ fi
 rm -f "${START}"
 # Check if we are on a terminal
 if [ -t 1 ]; then
-    # If yes: attach the session, exit on detach or error
-    tmux attach -t "${TMUX_SESSION}"
-else
-    # If no: wait for the session to terminate
-    echo "TMUX session is running in the background"
-    while tmux has-session -t "${TMUX_SESSION}"; do
-        sleep 10
-    done
-    tmux kill-session -t "${TMUX_SESSION}" || true
-    echo "TMUX session has terminated"
+    # If yes: attach the session, exit on error
+    tmux attach -t "${TMUX_SESSION}" || exit 1
 fi
+# Tell the user about backgrounding
+if tmux has-session -t "${TMUX_SESSION}"; then
+    echo "TMUX session is running in the background"
+fi
+# Wait for the session to terminate
+while tmux has-session -t "${TMUX_SESSION}"; do
+    sleep 3
+done
+# Tear the session down if we get terminated
+tmux kill-session -t "${TMUX_SESSION}" || true
+echo "TMUX session has terminated"
