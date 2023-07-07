@@ -5,9 +5,10 @@ FROM ${BASE}
 
 USER root
 
-COPY / /sim/
+ADD / /sim/
 
 RUN chown -R sim:sim /sim/
 
 USER sim
 WORKDIR /sim
+CMD [ "/sim/tmux.sh" ]

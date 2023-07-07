@@ -40,7 +40,9 @@ if [ -e $DIST/mvs-tk4/tk4-_v1.00_current.zip ]; then
     unzip -u $DIST/mvs-tk4/tk4-_v1.00_current.zip
     unzip -u $DIST/mvs-tk4/tk4-cbt.zip
     unzip -u $DIST/mvs-tk4/tk4-source.zip
-    rm -rf hercules
+    rm -rf hercules ctca_demo *.bat unattended/set_*
+    echo "CONSOLE" > unattended/mode
+    mv mvs run.sh
 fi
 
 # MVS CE
@@ -49,6 +51,7 @@ if [ -e $DIST/mvs-ce/MVSCE.release.v1.0.6.tar ]; then
     tar xfv $DIST/mvs-ce/MVSCE.release.v1.0.6.tar
     mv MVSCE/* .
     rmdir MVSCE
+    mv start_mvs.sh run.sh
 fi
 
 # VM/370 CE
@@ -63,3 +66,6 @@ if [ -e $DIST/vm370-ce/VM370CE.V1.R1.2.zip ]; then
     rm -rf WC3270
 fi
 
+# Fix script permissions
+cd $ROOT
+chmod +x build/*/*.sh

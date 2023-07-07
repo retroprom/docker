@@ -7,36 +7,39 @@ ARG BASE="debian:stable"
 FROM ${BASE} AS common
 
 # Configuration for the Hercules/Hyperion simulator
-ARG HYPERION_CONFIG="--enable-regina-rexx"
-ARG HYPERION_GIT="https://github.com/SDL-Hercules-390/hyperion.git"
-ARG HYPERION_REV="master"
+ARG HYPERION_SRC_CONFIG="--enable-regina-rexx"
+ARG HYPERION_SRC_GIT="https://github.com/SDL-Hercules-390/hyperion.git"
+ARG HYPERION_SRC_REV="master"
 
 # Configuration for the Regina Rexx interpreter
-ARG REGINAREXX_CONFIG=""
-ARG REGINAREXX_SVN="https://svn.code.sf.net/p/regina-rexx/code/interpreter/tags/3.9.3/"
+ARG REGINAREXX_SRC_CONFIG=""
+ARG REGINAREXX_SRC_SVN="https://svn.code.sf.net/p/regina-rexx/code/interpreter/tags/3.9.3/"
 
 # Packages required during runtime
-ENV HYPERION_PKG_RUNTIME="ca-certificates dumb-init bzip2 zlib1g"
+ENV HYPERION_PKG_RUNTIME="ca-certificates dumb-init bzip2 git-core zlib1g"
 # Pacakges required for building
-ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ git-core libtool make libbz2-dev libltdl-dev zlib1g-dev subversion"
+ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ libtool make libbz2-dev libltdl-dev zlib1g-dev subversion"
 # Packages provided for convenience
-ENV HYPERION_PKG_EXTRA="b3270 c3270 s3270 htop iproute2 netcat-openbsd procps psmisc telnet tmux"
+ENV HYPERION_PKG_EXTRA="b3270 c3270 s3270 htop iproute2 less nano ncat procps psmisc telnet tmux vim"
 
 # Accumulate configuration
-ENV HYPERION_BUILD_CONFIG="--prefix=/usr/local ${HYPERION_CONFIG}"
-ENV HYPERION_BUILD_GIT="${HYPERION_GIT}"
-ENV HYPERION_BUILD_REV="${HYPERION_REV}"
-ENV REGINAREXX_BUILD_CONFIG="--prefix=/usr/local ${REGINAREXX_CONFIG}"
-ENV REGINAREXX_BUILD_SVN="${REGINAREXX_SVN}"
+ENV HYPERION_BUILD_CONFIG="--prefix=/usr/local ${HYPERION_SRC_CONFIG}"
+ENV HYPERION_BUILD_GIT="${HYPERION_SRC_GIT}"
+ENV HYPERION_BUILD_REV="${HYPERION_SRC_REV}"
+ENV REGINAREXX_BUILD_CONFIG="--prefix=/usr/local ${REGINAREXX_SRC_CONFIG}"
+ENV REGINAREXX_BUILD_SVN="${REGINAREXX_SRC_SVN}"
 
 # We beed LD_LIBRARY_PATH because of broken rpath
 ENV LD_LIBRARY_PATH "/usr/local/lib"
+
+# Become root in case of other defaults
+USER root
 
 # Install runtime dependencies and create the 'sim' user
 RUN apt update \
  && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${HYPERION_PKG_RUNTIME} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
- && adduser --system --group --home=/sim sim
+ && adduser --system --group --home=/sim --shell=/bin/bash sim
 
 # **** Build environment
 
