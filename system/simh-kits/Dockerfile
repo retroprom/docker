@@ -17,8 +17,6 @@ RUN chown -R sim:sim /sim
 USER sim
 WORKDIR /sim
 
-EXPOSE 23
-
 # Use dumb-init and start our script
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
 CMD [ "/sim/run.sh" ]
