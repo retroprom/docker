@@ -1,29 +1,38 @@
 
 ARG BASE="debian:stable"
 
+# **** Common environment
+
 FROM ${BASE} AS common
 
+# KLH-10 configuration
 ARG KLH10_CONFIG=""
-
 ARG KLH10_GIT="https://github.com/PDP-10/klh10.git"
 ARG KLH10_REV="master"
 
-ENV KLH10_PKG_RUNTIME="ca-certificates dumb-init libpcap0.8 libvdeplug2 vde2"
-ENV KLH10_PKG_BUILD="autoconf automake build-essential gcc git-core libtool make libltdl-dev pkg-config libpcap-dev libvdeplug-dev"
+# Package dependencies
+ENV KLH10_PKG_RUNTIME="ca-certificates dumb-init git-core libpcap0.8 libvdeplug2 vde2"
+ENV KLH10_PKG_BUILD="autoconf automake build-essential gcc libtool make libltdl-dev pkg-config libpcap-dev libvdeplug-dev"
+ENV KLH10_PKG_EXTRA="bridge-utils htop iproute2 less nano ncat procps psmisc telnet uml-utilities vim"
 
+# Build configuration
 ENV KLH10_BUILD_CONFIG="--bindir=/bin ${KLH10_CONFIG}"
 ENV KLH10_BUILD_GIT="${KLH10_GIT}"
 ENV KLH10_BUILD_REV="${KLH10_REV}"
 
+# Install runtime dependencies
 RUN apt update \
  && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${KLH10_PKG_RUNTIME} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
  && adduser --system --group --home=/sim sim
 
+# **** Build environment
+
 FROM common as build
 
 WORKDIR /build
 
+# Install build dependencies and build KLH-10
 RUN apt update \
  && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${KLH10_PKG_BUILD} \
  && apt clean && rm -rf /var/lib/apt/lists/* \
@@ -42,17 +51,28 @@ RUN apt update \
  && make -C bld-ks install DESTDIR=/opt/klh10-ks \
  && make -C bld-ks-its install DESTDIR=/opt/klh10-ks-its
 
+# **** Final environment
+
 FROM common
 
+# Configure KLH-10 launch
 ENV KLH10_VARIANT="kl"
 ENV KLH10_STARTUP="klh10.ini"
 ENV KLH10_OPTIONS=""
 
+# Copy binaries from build environment
 COPY --from=build /opt /opt
 
+# Install extra packages
+RUN apt update \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${KLH10_PKG_EXTRA} \
+ && apt clean && rm -rf /var/lib/apt/lists/*
+
+# Install start script
 COPY run.sh /sim/run.sh
 RUN chmod 755 /sim/run.sh
 
+# Configure initial environment
 USER sim
 WORKDIR /sim
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
