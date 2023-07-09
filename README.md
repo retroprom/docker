@@ -49,7 +49,8 @@ We also provide scripts for building some system images.
 The build is simple. It requires Internet access and may fail on occasion tue do upstream issues:
 
 ```
-$ ./build.sh
+$ ./build-emulators.sh
+$ ./build-systems.sh
 ```
 
 Once you have some images, most of them will give you an instant shell:
