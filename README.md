@@ -44,6 +44,38 @@ We also provide scripts for building some system images.
 | retroprom/simh-pdp11-unix-v6 | SIMH | DEC PDP-11/45 | UNIX V6 | SIMH |
 | retroprom/simh-pdp11-unix-v7 | SIMH | DEC PDP-11/45 | UNIX V7 | SIMH |
 
+### Quickstart
+
+The build is simple. It requires Internet access and may fail on occasion tue do upstream issues:
+
+```
+$ ./build.sh
+```
+
+Once you have some images, most of them will give you an instant shell:
+
+```
+$ docker run --rm -ti retroprom/simh-pdp11-unix-v7
+
+PDP-11 simulator Open SIMH V4.1-0 Current        git commit id: 09f67aa0
+Disabling XQ
+@boot
+     New Boot, known devices are hp ht rk rl rp tm vt
+: rl(0,0)rl2unix
+mem = 177856
+# Restricted rights: Use, duplication, or disclosure
+is subject to restrictions stated in your contract with
+Western Electric Company, Inc.
+Thu Sep 22 05:47:36 EDT 1988
+
+login: root
+Password:
+You have mail.
+#
+```
+
+IBM mainframe images will launch TMUX and Hercules. Terminal attach must be done manually - for now.
+
 ### Technical Notes
 
 Feel free to send patches or ask questions.
@@ -63,6 +95,10 @@ Other simulator files are located in /sim.
 Images should be set up to start the emulator using dumb-init.
 
 System images usually start in the foreground and require a terminal.
+
+The Docker console and 'sim' user get full control over the simulator.
+
+Console sessions are logged in with admin privileges for convenience.
 
 ### Legal
 
