@@ -117,5 +117,5 @@ Many of the systems provided are **limited to non-commercial use**.
 
 This package itself contains no licensed material from third parties.
 
-Non-hobbyist users are advised to carefully analyze the legal situation.
+All users are advised to carefully analyze the legal situation.
 
