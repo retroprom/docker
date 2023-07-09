@@ -44,7 +44,7 @@ We also provide scripts for building some system images.
 | retroprom/simh-pdp11-unix-v6 | SIMH | DEC PDP-11/45 | UNIX V6 | SIMH |
 | retroprom/simh-pdp11-unix-v7 | SIMH | DEC PDP-11/45 | UNIX V7 | SIMH |
 
-### Some Quick Notes
+### Technical Notes
 
 Feel free to send patches or ask questions.
 
@@ -63,4 +63,22 @@ Other simulator files are located in /sim.
 Images should be set up to start the emulator using dumb-init.
 
 System images usually start in the foreground and require a terminal.
+
+### Legal
+
+This package is - for the moment at least - in the public domain.
+
+In legislatures without a public domain, CC0 may be applied instead.
+
+This software is provided **without any warranty** - express or implied.
+
+It is intended for **hobby, research and training use only**.
+
+Images built will contain **licensed materials owned by third parties**.
+
+Many of the systems provided are **limited to non-commercial use**.
+
+This package itself contains no licensed material from third parties.
+
+Non-hobbyist users are advised to carefully analyze the legal situation.
 
