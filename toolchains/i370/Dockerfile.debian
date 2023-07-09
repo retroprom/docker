@@ -1,0 +1,27 @@
+
+ARG BASE="debian:stable"
+ARG START="bash"
+
+FROM ${BASE} AS common
+
+ENV MVSCROSS_GIT="https://github.com/retroprom/mvscross.git"
+ENV MVSCROSS_REV="master"
+
+ENV MVSCROSS_PKG="build-essential ca-certificates dumb-init gcc gcc-multilib git-core libc6-dev make"
+
+USER root
+
+RUN apt update \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${MVSCROSS_PKG} \
+ && apt clean && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /build
+
+RUN git clone "${MVSCROSS_GIT}" \
+ && cd mvscross \
+ && git submodule update --init --recursive \
+ && ./build.sh
+
+ENV START="${START}"
+CMD [ "${START}" ]
+
