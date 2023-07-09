@@ -75,6 +75,4 @@ fi
 
 # Fix script permissions
 cd $ROOT
-fromdos build/*/hercules.ini
-fromdos build/*/hercules.rc
 chmod +x build/*/*.sh
