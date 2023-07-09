@@ -52,6 +52,10 @@ FROM common
 # Copy binaries from build environment
 COPY --from=build /usr/local /usr/local
 
+# Environment for SIMH launcher
+ENV SIMH_SIMULATOR="pdp11"
+ENV SIMH_OPTIONS=""
+
 # Install extra packages
 RUN apt update \
  && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${SIMH_PKG_EXTRA} \

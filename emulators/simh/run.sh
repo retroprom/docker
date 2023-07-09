@@ -10,4 +10,4 @@ set -euo pipefail
 export SIMH_SIMULATOR="${SIMH_SIMULATOR:-pdp11}"
 
 # Execute the simulator
-exec "${SIMH_SIMULATOR}" "${@}"
+exec "${SIMH_SIMULATOR}" "${SIMH_OPTIONS}" "${@}"
