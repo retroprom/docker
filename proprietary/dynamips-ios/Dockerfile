@@ -12,7 +12,7 @@ ENV DYNAMIPS_OPTIONS="${OPTIONS}"
 WORKDIR /sim
 COPY *.bin /sim/
 COPY *.md5 /sim/
-RUN chown -R sim.sim /sim && chmod 755 run.sh
+RUN chown -R sim:sim /sim && chmod 755 run.sh
 
 USER sim
 WORKDIR /sim
