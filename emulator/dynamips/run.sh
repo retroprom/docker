@@ -1,6 +1,10 @@
 #!/bin/bash
+#
+# Launch script for Dynamips
+#
 
-set -e
+# Be strict
+set -euo pipefail
 
+# Run the simulator
 exec dynamips ${DYNAMIPS_OPTIONS} ${DYNAMIPS_IMAGE}
-

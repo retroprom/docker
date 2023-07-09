@@ -1,8 +1,18 @@
 #!/bin/bash
-set -e
-# Defaults
-if [ -z "${HERCULES_CONFIG}" ]; then HERCULES_CONFIG="hercules.ini"; fi
-if [ -z "${HERCULES_SCRIPT}" ]; then HERCULES_SCRIPT="hercules.rc";  fi
-if [ -z "${HERCULES_LOG}"    ]; then HERCULES_LOG="hercules.log"; fi
-# Execute
+#
+# Launch script for Hercules
+#
+
+# Be strict
+set -euo pipefail
+
+# Configure from environment
+export HERCULES_CONFIG="${HERCULES_CONFIG:-hercules.ini}"
+export HERCULES_SCRIPT="${HERCULES_SCRIPT:-hercules.rc}"
+export HERCULES_LOG="${HERCULES_LOG:-hercules.log}"
+
+# Say something
+echo "Starting Hercules..."
+
+# Run the simulator
 exec hercules -f "${HERCULES_CONFIG}" -r "${HERCULES_SCRIPT}" > "${HERCULES_LOG}"
