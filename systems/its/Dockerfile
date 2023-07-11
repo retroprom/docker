@@ -12,8 +12,8 @@ ARG ITS_GIT="https://github.com/PDP-10/its.git"
 ARG ITS_REV="master"
 
 # Package dependencies
-ENV ITS_PKG_RUNTIME="ca-certificates dumb-init git-core libpcap0.8 libvdeplug2 vde2"
-ENV ITS_PKG_BUILD="autoconf automake build-essential expect gcc libtool make libltdl-dev pkg-config libpcap-dev libvdeplug-dev"
+ENV ITS_PKG_RUNTIME="ca-certificates dumb-init git-core libncurses5 libpcap0.8 libvdeplug2 vde2"
+ENV ITS_PKG_BUILD="autoconf automake build-essential expect gcc libtool make libltdl-dev libncurses5-dev pkg-config libpcap-dev libvdeplug-dev"
 ENV ITS_PKG_EXTRA="bridge-utils htop iproute2 less nano ncat procps psmisc telnet uml-utilities vim"
 
 # Build configuration
@@ -51,7 +51,8 @@ FROM common
 ENV ITS_OPTIONS="${ITS_TARGET}"
 
 # Copy binaries from build environment
-COPY --from=build /build/its /opt
+COPY --from=build /build/its /sim
+RUN chown -R sim:sim /sim
 
 # Install extra packages
 RUN apt update \
