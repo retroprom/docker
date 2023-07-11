@@ -25,12 +25,6 @@ export TMUX_CONFIG="${TMUX_CONFIG:-/sim/tmux.conf}"
 export TMUX_DEFAULTS="${TMUX_DEFAULTS:-/sim/tmux.defaults}"
 export TMUX_WIDTH="${TMUX_WIDTH:-80}"
 export TMUX_HEIGHT="${TMUX_HEIGHT:-25}"
-#if [ -z "${TMUX_SESSION}" ]; then export TMUX_SESSION="main"; fi
-#if [ -z "${TMUX_PROGRAM}" ]; then export TMUX_PROGRAM="/sim/run.sh"; fi
-#if [ -z "${TMUX_CONFIG}" ]; then export TMUX_CONFIG="/sim/tmux.conf"; fi
-#if [ -z "${TMUX_DEFAULTS}" ]; then export TMUX_DEFAULTS="/sim/tmux.defs"; fi
-#if [ -z "${TMUX_WIDTH}" ]; then export TMUX_WIDTH="80"; fi
-#if [ -z "${TMUX_HEIGHT}" ]; then export TMUX_HEIGHT="25"; fi
 
 # Generate startup script
 START="${HOME}/.tmux.${TMUX_SESSION}.start"
