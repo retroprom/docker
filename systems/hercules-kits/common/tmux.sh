@@ -17,6 +17,8 @@
 
 # Be strict
 set -euo pipefail
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+
 
 # Configure from environment
 export TMUX_SESSION="${TMUX_SESSION:-main}"
