@@ -13,7 +13,7 @@
 # most cases, but this is not safe. Care must therefore
 # be taken not to use this script concurrently, which is
 # already the case for container and service launches.
-# 
+#
 
 # Be strict
 set -euo pipefail
