@@ -19,6 +19,10 @@
 set -euo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
+# Switch to sim directory
+SELF="$(type -p "$0")"
+ROOT="$(dirname "${SELF}")"
+cd "${ROOT}"
 
 # Configure from environment
 export TMUX_SESSION="${TMUX_SESSION:-main}"
