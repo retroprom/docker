@@ -20,7 +20,7 @@ ENV HYPERION_PKG_RUNTIME="ca-certificates dumb-init bzip2 git-core zlib1g"
 # Pacakges required for building
 ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ libtool make libbz2-dev libltdl-dev zlib1g-dev subversion"
 # Packages provided for convenience
-ENV HYPERION_PKG_EXTRA="b3270 c3270 s3270 htop iproute2 less nano ncat procps psmisc telnet tmux vim"
+ENV HYPERION_PKG_EXTRA="b3270 c3270 s3270 htop iproute2 less nano ncat procps python3 psmisc telnet tmux vim"
 
 # Accumulate configuration
 ENV HYPERION_BUILD_CONFIG="--prefix=/usr/local ${HYPERION_SRC_CONFIG}"
