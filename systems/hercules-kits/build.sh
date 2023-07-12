@@ -2,10 +2,6 @@
 
 set -e
 
-if ! [ -d download ]; then
-    ./download.sh
-fi
-
 ./extract.sh
 
 # DOS/VS 5-pack

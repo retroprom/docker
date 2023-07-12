@@ -2,10 +2,6 @@
 
 set -e
 
-if ! [ -d download ]; then
-    ./download.sh
-fi
-
 ./extract.sh
 
 docker build build/id32-unix-v6 -f Dockerfile -t retroprom/simh-id32-unix-v6 --build-arg SIMULATOR=id32 "$@"
