@@ -32,6 +32,7 @@ fi
 if [ -e $DIST/mvs-tk3/MVS_Turnkey_Volker_V3.zip ]; then
     enter mvs-tk3
     unzip -u $DIST/mvs-tk3/MVS_Turnkey_Volker_V3.zip
+    rm -rf hercules-* hercwin-* c3270-* cygwin RECYCLER
 fi
 
 # MVS TK4
