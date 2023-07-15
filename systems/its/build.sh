@@ -3,12 +3,12 @@
 set -e
 
 docker build . -f Dockerfile \
-	-t retroprom/its-klh10:latest \
+	-t retroprom/klh10-its:latest \
 	--build-arg ITS_TARGET=klh10 \
 	"$@"
 
 docker build . -f Dockerfile \
-	-t retroprom/its-simh:latest \
+	-t retroprom/simh-its:latest \
 	--build-arg ITS_TARGET=simh \
 	"$@"
 
