@@ -34,3 +34,11 @@ RUN git clone --depth 1 ${CRAYSIM_BUILD_GIT} craysim \
 FROM common
 
 COPY --from=build /sim /sim
+
+COPY run.sh /sim/run.sh
+RUN chmod 755 /sim/run.sh
+
+USER sim
+WORKDIR /sim
+ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
+CMD [ "/sim/run.sh" ]
