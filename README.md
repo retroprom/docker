@@ -10,12 +10,13 @@ A full build will provide you with the following emulators.
 
 | Image name | Emulator | Description |
 | ---------- | -------- | ----------- |
-| retroprom/craysim | [cray-sim](https://github.com/andrastantos/cray-sim/) | Cray simulator |
+| retroprom/craysim | [cray-sim](https://github.com/andrastantos/cray-sim/) | Cray PVP supercomputer simulator |
 | retroprom/dynamips | [Dynamips](https://github.com/GNS3/dynamips/) | Cisco router emulator for running Cisco IOS |
 | retroprom/es40 | [ES40](https://github.com/retroprom/es40/) | DEC Alpha emulator named after the DS40 |
 | retroprom/gxemul | [GXemul](http://gavare.se/gxemul/) | Gavare's eXperimental Emulator |
 | retroprom/hercules | [Hercules](https://github.com/SDL-Hercules-390/hyperion/) | IBM mainframe emulator for S/360 through z/Arch |
 | retroprom/klh10 | [KLH-10](https://github.com/PDP-10/klh10/) | DEC PDP-10 emulator, originally by Ken L. Harenstien |
+| retroprom/mame | [MAME](https://github.com/mamedev/mame/) | Multi-purpose emulation framework - including some SGIs |
 | retroprom/simh | [Open-SIMH](https://github.com/open-simh/simh/) | Simulator for DEC and other historic systems |
 
 ### Systems
@@ -29,20 +30,26 @@ We also provide scripts for building some system images.
 | retroprom/hercules-mvs-tk3 | Hercules | IBM S/370 | MVS 3.8J | TK3 |
 | retroprom/hercules-mvs-tk4 | Hercules | IBM S/370 | MVS 3.8J | TK4- |
 | retroprom/hercules-vm370-ce | Hercules | IBM 3390 | VM/370 | VM/370 CE |
+| retroprom/its-klh10 | KLH-10 (custom) | DEC PDP-10 | MIT ITS | PDP-10 project |
+| retroprom/its-simh | SIMH (custom) | DEC PDP-10 | MIT ITS | PDP-10 project |
 | retroprom/klh10-panda | KLH-10 | DEC PDP-10 | TOPS-20 | PANDA |
 | retroprom/simh-id32-os32 | SIMH | Interdata 8/32 | OS/32 | simh-os32 |
-| retroprom/simh-id32-unix-v6 | SIMH | Interdata 7/32 | UNIX V6 | SIMH |
-| retroprom/simh-id32-unix-v7 | SIMH | Interdata 7/32 | UNIX V7 | SIMH |
-| retroprom/simh-pdp8-dms | SIMH | DEC PDP-8 | DMS | SIMH |
-| retroprom/simh-pdp8-focal | SIMH | DEC PDP-8 | FOCAL | SIMH |
-| retroprom/simh-pdp8-os8 | SIMH | DEC PDP-8 | OS/8 | SIMH |
-| retroprom/simh-pdp8-tss8 | SIMH | DEC PDP-8 | TSS/8 | SIMH |
-| retroprom/simh-pdp11-rsts-v7 | SIMH | DEC PDP-11/73 | RSTS/E V7 | SIMH |
-| retroprom/simh-pdp11-rt11-v4 | SIMH | DEC PDP-11/23 | RT-11 V4 | SIMH |
-| retroprom/simh-pdp11-rt11-v5 | SIMH | DEC PDP-11/23 | RT-11 V5 | SIMH |
-| retroprom/simh-pdp11-unix-v5 | SIMH | DEC PDP-11/45 | UNIX V5 | SIMH |
-| retroprom/simh-pdp11-unix-v6 | SIMH | DEC PDP-11/45 | UNIX V6 | SIMH |
-| retroprom/simh-pdp11-unix-v7 | SIMH | DEC PDP-11/45 | UNIX V7 | SIMH |
+| retroprom/simh-id32-unix-v6 | SIMH | Interdata 7/32 | UNIX V6 | SIMH kit |
+| retroprom/simh-id32-unix-v7 | SIMH | Interdata 7/32 | UNIX V7 | SIMH kit |
+| retroprom/simh-pdp8-dms | SIMH | DEC PDP-8 | DMS | SIMH kit |
+| retroprom/simh-pdp8-focal | SIMH | DEC PDP-8 | FOCAL | SIMH kit |
+| retroprom/simh-pdp8-os8 | SIMH | DEC PDP-8 | OS/8 | SIMH kit |
+| retroprom/simh-pdp8-tss8 | SIMH | DEC PDP-8 | TSS/8 | SIMH kit |
+| retroprom/simh-pdp11-rsts-v7 | SIMH | DEC PDP-11/73 | RSTS/E V7 | SIMH kit |
+| retroprom/simh-pdp11-rt11-v4 | SIMH | DEC PDP-11/23 | RT-11 V4 | SIMH kit |
+| retroprom/simh-pdp11-rt11-v5 | SIMH | DEC PDP-11/23 | RT-11 V5 | SIMH kit |
+| retroprom/simh-pdp11-unix-v5 | SIMH | DEC PDP-11/45 | UNIX V5 | SIMH kit |
+| retroprom/simh-pdp11-unix-v6 | SIMH | DEC PDP-11/45 | UNIX V6 | SIMH kit |
+| retroprom/simh-pdp11-unix-v7 | SIMH | DEC PDP-11/45 | UNIX V7 | SIMH kit |
+
+### Toolchains
+
+At a low priority, we package some cross toolchains for retro development.
 
 ### Quickstart
 
