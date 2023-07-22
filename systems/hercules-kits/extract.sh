@@ -23,9 +23,9 @@ unzip_unroot() {
 }
 
 # DOS/VS 5-pack
-if [ -e $DIST/dosvs-5pack/DOSVS_5Pack_V1.0-full.zip ]; then
+if [ -e $DIST/dosvs-5pk/DOSVS_5Pack_V1.0-full.zip ]; then
     enter dosvs-5pk
-    unzip -u $DIST/dosvs-5pack/DOSVS_5Pack_V1.0-full.zip
+    unzip -u $DIST/dosvs-5pk/DOSVS_5Pack_V1.0-full.zip
 fi
 
 # MVS TK3
