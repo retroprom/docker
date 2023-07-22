@@ -71,7 +71,6 @@ rm -f "${START}"
 # Check if we are on a terminal
 if [ -t 1 ]; then
     # If yes: attach the session, exit on error
-    echo "ATTACH"
     tmux attach -t "${TMUX_SESSION}" || exit 1
 fi
 
