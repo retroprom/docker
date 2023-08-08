@@ -1,0 +1,43 @@
+
+ARG BASE="debian:stable"
+
+FROM ${BASE} AS common
+
+ARG DOSEMU_CONFIG=""
+
+ARG DOSEMU_GIT="https://github.com/dosemu2/dosemu2.git"
+ARG DOSEMU_REV="devel"
+
+ENV DOSEMU_PKG_RUNTIME="ca-certificates dumb-init libsdl1.2debian libx11-6"
+ENV DOSEMU_PKG_BUILD="autoconf autoconf-archive automake bison build-essential gawk gcc git-core libtool make ladspa-sdk libao-dev libbsd-dev libfluidsynth-dev libgpm-dev libltdl-dev libsdl2-dev pkg-config xorg-dev"
+
+ENV DOSEMU_BUILD_CONFIG="--prefix=/usr/local ${DOSEMU_CONFIG}"
+ENV DOSEMU_BUILD_GIT="${DOSEMU_GIT}"
+ENV DOSEMU_BUILD_REV="${DOSEMU_REV}"
+
+RUN apt update \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${DOSEMU_PKG_RUNTIME} \
+ && apt clean && rm -rf /var/lib/apt/lists/* \
+ && adduser --system --group --home=/sim sim
+
+FROM common as build
+
+WORKDIR /build
+
+RUN apt update \
+ && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${DOSEMU_PKG_BUILD} \
+ && apt clean && rm -rf /var/lib/apt/lists/*
+
+RUN git clone --depth 1 ${DOSEMU_BUILD_GIT} dosemu \
+ && cd dosemu \
+ && git checkout ${DOSEMU_BUILD_REV} \
+ && ./autogen.sh \
+ && mkdir ../build \
+ && cd ../build
+# && ../dosemu/configure ${DOSEMU_BUILD_CONFIG} \
+# && make -j1 \
+# && make install
+
+#FROM common
+
+#COPY --from=build /usr/local /usr/local

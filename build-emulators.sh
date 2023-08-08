@@ -8,7 +8,7 @@ ROOT="$PWD"
 
 # Configuration
 BASE="debian:bookworm"
-EMULATORS="craysim dynamips es40 gxemul hercules klh10 simh"
+EMULATORS="craysim dosemu dynamips es40 gxemul hercules klh10 simh"
 
 # Build each emulator
 for emulator in ${EMULATORS}; do

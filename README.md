@@ -11,6 +11,7 @@ A full build will provide you with the following emulators.
 | Image name | Emulator | Description |
 | ---------- | -------- | ----------- |
 | retroprom/craysim | [cray-sim](https://github.com/andrastantos/cray-sim/) | Cray PVP supercomputer simulator |
+| retroprom/dosemu | [dosemu2](https://github.com/dosemu2/dosemu2/) | Modernized DOS emulator |
 | retroprom/dynamips | [Dynamips](https://github.com/GNS3/dynamips/) | Cisco router emulator for running Cisco IOS |
 | retroprom/es40 | [ES40](https://github.com/retroprom/es40/) | DEC Alpha emulator named after the DS40 |
 | retroprom/gxemul | [GXemul](http://gavare.se/gxemul/) | Gavare's eXperimental Emulator |
