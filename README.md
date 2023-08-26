@@ -30,6 +30,7 @@ We also provide scripts for building some system images.
 | retroprom/hercules-mvs-ce | Hercules | IBM S/370 | MVS 3.8J | MVS/CE |
 | retroprom/hercules-mvs-tk3 | Hercules | IBM S/370 | MVS 3.8J | TK3 |
 | retroprom/hercules-mvs-tk4 | Hercules | IBM S/370 | MVS 3.8J | TK4- |
+| retroprom/hercules-mvs-tk5 | Hercules | IBM S/370 | MVS 3.8J | TK5 |
 | retroprom/hercules-vm370-ce | Hercules | IBM S/370 | VM/370 | VM/370 CE |
 | retroprom/its-klh10 | KLH-10 (custom) | DEC PDP-10 | MIT ITS | PDP-10 project |
 | retroprom/its-simh | SIMH (custom) | DEC PDP-10 | MIT ITS | PDP-10 project |
