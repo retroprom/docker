@@ -19,6 +19,11 @@ if [ -d build/mvs-tk4 ]; then
   docker build build/mvs-tk4 -f Dockerfile -t retroprom/hercules-mvs-tk4:latest "$@"
 fi
 
+# MVS TK5
+if [ -d build/mvs-tk5 ]; then
+  docker build build/mvs-tk5 -f Dockerfile -t retroprom/hercules-mvs-tk5:latest "$@"
+fi
+
 # MVS CE
 if [ -d build/mvs-ce-v1.0.6 ]; then
   docker build build/mvs-ce-v1.0.6 -f Dockerfile -t retroprom/hercules-mvs-ce:v1.0.6 "$@"

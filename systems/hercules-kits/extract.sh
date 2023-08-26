@@ -46,6 +46,16 @@ if [ -e $DIST/mvs-tk4/tk4-_v1.00_current.zip ]; then
     mv mvs run.sh
 fi
 
+# MVS TK5
+if [ -e $DIST/mvs-tk5/mvs-tk5.zip ]; then
+    enter mvs-tk5
+    unzip_unroot $DIST/mvs-tk5/mvs-tk5.zip mvs-tk5
+    unzip -uo $DIST/mvs-tk5/srccbt.zip
+    rm -rf hercules/*
+    mv mvs_ipl run.sh
+    rm mvs mvs_osx *.bat
+fi
+
 # MVS CE
 if [ -e $DIST/mvs-ce/MVSCE.release.v1.0.6.tar ]; then
     enter mvs-ce-v1.0.6

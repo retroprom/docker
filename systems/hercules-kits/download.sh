@@ -27,6 +27,10 @@ get_mvs_tk4 tk4-cbt.zip
 get_mvs_tk4 tk4-source.zip
 get_mvs_tk4 tk4-_v1.00_current.zip
 
+# MVS TK5
+get mvs-tk5 mvs-tk5.zip http://www.prince-webdesign.nl/images/downloads/mvs-tk5.zip
+get mvs-tk5 srccbt.zip  http://www.prince-webdesign.nl/images/downloads/srccbt.zip
+
 # MVS/CE
 get mvs-ce MVSCE.release.v1.0.6.tar https://github.com/MVS-sysgen/sysgen/releases/download/v1.0.6/MVSCE.release.v1.0.6.tar
 
