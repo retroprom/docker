@@ -32,7 +32,7 @@ We also provide scripts for building some system images.
 | retroprom/hercules-mvs-tk4 | Hercules | IBM S/370 | MVS 3.8J | [TK4-](https://wotho.ethz.ch/tk4-/) |
 | retroprom/hercules-mvs-tk5 | Hercules | IBM S/370 | MVS 3.8J | [TK5](http://www.prince-webdesign.nl/tk5) |
 | retroprom/hercules-vm370-ce | Hercules | IBM S/370 | VM/370 | [VM/370 CE](http://www.vm370.org/) |
-| retroprom/its-klh10 | KLH-10 (custom) | DEC PDP-10 | MIT ITS | [PDP-10 project](https://github.com/PDP-10/its) |
+| retroprom/its-klh10 | KLH-10 (custom) | DEC PDP-10 | MIT ITS | [ITS project](https://github.com/PDP-10/its) |
 | retroprom/its-simh | SIMH (custom) | DEC PDP-10 | MIT ITS | [ITS project](https://github.com/PDP-10/its) |
 | retroprom/klh10-panda | KLH-10 | DEC PDP-10 | TOPS-20 | [PANDA project](https://github.com/PDP-10/panda) |
 | retroprom/simh-id32-os32 | SIMH | Interdata 8/32 | OS/32 | [simh-os32](https://github.com/davygoat/simh-os32) |
