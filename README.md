@@ -27,15 +27,15 @@ We also provide scripts for building some system images.
 | Image name | Emulator | Machine | System | Distribution |
 | ---------- | -------- | ------- | ------ | ------------ |
 | retroprom/hercules-dosvs-5pk | Hercules | IBM S/370 | DOS/VS | 5-pack |
-| retroprom/hercules-mvs-ce | Hercules | IBM S/370 | MVS 3.8J | MVS/CE |
+| retroprom/hercules-mvs-ce | Hercules | IBM S/370 | MVS 3.8J | [MVS/CE](https://github.com/MVS-sysgen/sysgen) |
 | retroprom/hercules-mvs-tk3 | Hercules | IBM S/370 | MVS 3.8J | TK3 |
-| retroprom/hercules-mvs-tk4 | Hercules | IBM S/370 | MVS 3.8J | TK4- |
-| retroprom/hercules-mvs-tk5 | Hercules | IBM S/370 | MVS 3.8J | TK5 |
-| retroprom/hercules-vm370-ce | Hercules | IBM S/370 | VM/370 | VM/370 CE |
-| retroprom/its-klh10 | KLH-10 (custom) | DEC PDP-10 | MIT ITS | PDP-10 project |
-| retroprom/its-simh | SIMH (custom) | DEC PDP-10 | MIT ITS | PDP-10 project |
-| retroprom/klh10-panda | KLH-10 | DEC PDP-10 | TOPS-20 | PANDA |
-| retroprom/simh-id32-os32 | SIMH | Interdata 8/32 | OS/32 | simh-os32 |
+| retroprom/hercules-mvs-tk4 | Hercules | IBM S/370 | MVS 3.8J | [TK4-](https://wotho.ethz.ch/tk4-/) |
+| retroprom/hercules-mvs-tk5 | Hercules | IBM S/370 | MVS 3.8J | [TK5](http://www.prince-webdesign.nl/tk5) |
+| retroprom/hercules-vm370-ce | Hercules | IBM S/370 | VM/370 | [VM/370 CE](http://www.vm370.org/) |
+| retroprom/its-klh10 | KLH-10 (custom) | DEC PDP-10 | MIT ITS | [PDP-10 project](https://github.com/PDP-10/its) |
+| retroprom/its-simh | SIMH (custom) | DEC PDP-10 | MIT ITS | [ITS project](https://github.com/PDP-10/its) |
+| retroprom/klh10-panda | KLH-10 | DEC PDP-10 | TOPS-20 | [PANDA project](https://github.com/PDP-10/panda) |
+| retroprom/simh-id32-os32 | SIMH | Interdata 8/32 | OS/32 | [simh-os32](https://github.com/davygoat/simh-os32) |
 | retroprom/simh-id32-unix-v6 | SIMH | Interdata 7/32 | UNIX V6 | SIMH kit |
 | retroprom/simh-id32-unix-v7 | SIMH | Interdata 7/32 | UNIX V7 | SIMH kit |
 | retroprom/simh-pdp8-dms | SIMH | DEC PDP-8 | DMS | SIMH kit |
