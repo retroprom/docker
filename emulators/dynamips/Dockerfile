@@ -8,7 +8,7 @@ ARG DYNAMIPS_CONFIG="-DCMAKE_BUILD_TYPE=RelWithDebInfo"
 ARG DYNAMIPS_GIT="https://github.com/GNS3/dynamips.git"
 ARG DYNAMIPS_REV="master"
 
-ENV DYNAMIPS_PKG_RUNTIME="ca-certificates dumb-init libelf1 libpcap0.8"
+ENV DYNAMIPS_PKG_RUNTIME="adduser ca-certificates dumb-init libelf1 libpcap0.8"
 ENV DYNAMIPS_PKG_BUILD="build-essential cmake gcc git-core libelf-dev libpcap-dev libtool make libltdl-dev pkg-config"
 
 ENV DYNAMIPS_BUILD_CONFIG="-DCMAKE_INSTALL_PREFIX=/usr/local ${DYNAMIPS_CONFIG}"

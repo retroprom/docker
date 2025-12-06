@@ -1,0 +1,17 @@
+version: '3.4'
+#name: retroprom
+
+services:
+    simh:
+        build: emulators/simh
+        command: /bin/true
+    klh10:
+        build: emulators/klh10
+        command: /bin/true
+#    hercules:
+#        build: emulators/hercules
+#        command: /bin/true
+    dynamips:
+        build: emulators/dynamips
+        command: /bin/true
+

@@ -3,10 +3,8 @@
 set -e
 
 get() {
-  wget -c -O download/$1 http://simh.trailing-edge.com/kits/$1
+  wget -c -O $1 http://simh.trailing-edge.com/kits/$1
 }
-
-mkdir -p download
 
 # DEC RSTS/E
 get rstsv7gen.tar.Z

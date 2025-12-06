@@ -11,7 +11,7 @@ ARG KLH10_GIT="https://github.com/PDP-10/klh10.git"
 ARG KLH10_REV="master"
 
 # Package dependencies
-ENV KLH10_PKG_RUNTIME="ca-certificates dumb-init git-core libpcap0.8 libvdeplug2 vde2"
+ENV KLH10_PKG_RUNTIME="adduser ca-certificates dumb-init git-core libpcap0.8 libvdeplug2 vde2"
 ENV KLH10_PKG_BUILD="autoconf automake build-essential gcc libtool make libltdl-dev pkg-config libpcap-dev libvdeplug-dev"
 ENV KLH10_PKG_EXTRA="bridge-utils htop iproute2 less nano ncat procps psmisc telnet uml-utilities vim"
 

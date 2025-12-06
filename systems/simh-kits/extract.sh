@@ -12,6 +12,7 @@ rm -rf build
 enter() {
     echo Extracting for $1...
     mkdir -p $ROOT/build/$1
+    cp $ROOT/Dockerfile $ROOT/build/$1/Dockerfile
     cp -r $ROOT/$1/* $ROOT/build/$1
     cd $ROOT/build/$1
 }

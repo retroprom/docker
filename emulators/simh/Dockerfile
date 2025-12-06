@@ -12,9 +12,9 @@ ARG SIMH_GIT="https://github.com/open-simh/simh.git"
 ARG SIMH_REV="master"
 
 # Package dependencies
-ENV SIMH_PKG_RUNTIME="ca-certificates dumb-init git-core libedit2 libncurses6 libpcap-dev libpcre3 libpng16-16 libsdl2-2.0-0 libvdeplug2"
-ENV SIMH_PKG_BUILD="build-essential gcc cmake make libedit-dev libncurses-dev libpcap-dev libpcre3-dev libpng-dev libsdl2-dev libsdl2-ttf-dev libvdeplug-dev"
-ENV SIMH_PKG_EXTRA="bridge-utils htop iproute2 less nano ncat procps psmisc rsh-client telnet uml-utilities vim"
+ENV SIMH_PKG_RUNTIME="ca-certificates dumb-init adduser git-core libedit2 libncurses6 libpcap-dev libpcre2-dev libpng16-16 libsdl2-2.0-0 libvdeplug2"
+ENV SIMH_PKG_BUILD="build-essential gcc cmake make libedit-dev libncurses-dev libpcap-dev libpcre2-dev libpng-dev libsdl2-dev libsdl2-ttf-dev libvdeplug-dev"
+ENV SIMH_PKG_EXTRA="bridge-utils curl htop iproute2 less nano ncat procps psmisc telnet uml-utilities vim wget"
 
 # Build configuration
 ENV SIMH_BUILD_CONFIG="PREFIX=/usr/local ${SIMH_SELECT} ${SIMH_CONFIG}"

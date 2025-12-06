@@ -16,7 +16,7 @@ ARG REGINAREXX_SRC_CONFIG=""
 ARG REGINAREXX_SRC_SVN="https://svn.code.sf.net/p/regina-rexx/code/interpreter/tags/3.9.3/"
 
 # Packages required during runtime
-ENV HYPERION_PKG_RUNTIME="ca-certificates dumb-init bzip2 git-core zlib1g"
+ENV HYPERION_PKG_RUNTIME="adduser ca-certificates dumb-init bzip2 git-core zlib1g"
 # Pacakges required for building
 ENV HYPERION_PKG_BUILD="autoconf automake build-essential file gcc g++ libtool make libbz2-dev libltdl-dev zlib1g-dev subversion"
 # Packages provided for convenience
